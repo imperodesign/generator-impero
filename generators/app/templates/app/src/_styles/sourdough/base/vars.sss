@@ -1,5 +1,7 @@
-$min-site-width: 320px
-$max-site-width: 1280px
+:root
+	--min-site-width: 320px
+	--max-site-width: 1280px
 
-$tablet: 640px
-$desktop: 960px
+@custom-media --tablet (min-width: 640px)
+@custom-media --desktop (min-width: 960px)
+@custom-media --max (min-width: 1280px)

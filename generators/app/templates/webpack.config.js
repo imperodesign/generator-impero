@@ -2,7 +2,8 @@ const fs = require('fs')
 const webpack = require('webpack')
 const browsersync = require('browser-sync-webpack-plugin')
 const autoprefixer = require('autoprefixer')<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
-const sassImporter = require('sass-module-importer')<% } %>
+const sassImporter = require('sass-module-importer')<% } %><% if (cssChoice === 'Stylus') { %>
+const rupture = require('rupture')<% } %>
 
 if (fs.existsSync(`${__dirname}/.env`)) require('dotenv').load()
 else process.env.NODE_PORT = 5000
@@ -80,5 +81,8 @@ module.exports = {
   postcss: () => [autoprefixer],<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
   sassLoader: {
     importer: sassImporter()
+  }<% } %><% if (cssChoice === 'Stylus') { %>
+  stylus: {
+    use: [rupture()]
   }<% } %>
 }

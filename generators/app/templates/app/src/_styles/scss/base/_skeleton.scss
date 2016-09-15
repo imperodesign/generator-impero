@@ -1,13 +1,15 @@
-html
-  min-width: $min-site-width
-  background: #282828
-  color: white
+html {
+  min-width: $min-site-width;
+  background: #282828;
+  color: white;
+}
 
-a
-  outline: none
-  text-decoration: none
-  color: inherit
+a {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
 
   &:active,
   &:focus
-    outline: none
+    outline: none;
+}

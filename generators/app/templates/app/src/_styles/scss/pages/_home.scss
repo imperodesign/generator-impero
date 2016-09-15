@@ -1,5 +1,7 @@
-.home
-  color: orange
+.home {
+  color: orange;
 
-  @include breakpoint ($tablet)
-  	color: cyan
+  @include breakpoint ($tablet) {
+  	color: cyan;
+  }
+}

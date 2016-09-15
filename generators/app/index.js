@@ -181,9 +181,15 @@ module.exports = yeoman.Base.extend({
     )
 
     // Copy JS
+    this.fs.copyTpl(
+      this.templatePath('app/src/_scripts/es2015/main.js'),
+      this.destinationPath('app/src/scripts/main.js'), {
+        cssExt: this.props.cssPreprocessor.fileExt
+      }
+    )
     this.fs.copy(
-      this.templatePath('app/src/_scripts/es2015'),
-      this.destinationPath('app/src/scripts')
+      this.templatePath('app/src/_scripts/es2015/modules'),
+      this.destinationPath('app/src/scripts/modules')
     )
 
     // Add dependencies based upon selected options
@@ -201,6 +207,8 @@ module.exports = yeoman.Base.extend({
         'sass-module-importer': '^1.2.1'
       },
       'Stylus': {
+        'rupture': '^0.6.1',
+        'stylus': '^0.54.5',
         'stylus-loader': '^2.3.1'
       }
     }
