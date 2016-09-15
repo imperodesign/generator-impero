@@ -176,13 +176,13 @@ module.exports = yeoman.Base.extend({
 
     // Copy CSS
     this.fs.copy(
-      this.templatePath(`app/src/_css/${this.props.cssPreprocessor.templateDir}`),
+      this.templatePath(`app/src/_styles/${this.props.cssPreprocessor.templateDir}`),
       this.destinationPath('app/src/styles')
     )
 
     // Copy JS
     this.fs.copy(
-      this.templatePath('app/src/_js/es2015'),
+      this.templatePath('app/src/_scripts/es2015'),
       this.destinationPath('app/src/scripts')
     )
 
@@ -228,21 +228,5 @@ module.exports = yeoman.Base.extend({
     this.installDependencies({
       bower: false
     })
-
-    // Now install dependencies based upon the selected options
-    /*
-    if (this.props.cssPreprocessor.name === 'Sass' || this.props.cssPreprocessor.name === 'Sass (SCSS)') this.npmInstall([
-      'node-sass',
-      'sass-loader',
-      'sass-module-importer'
-    ], {
-      saveDev: true
-    })
-    else if (this.props.cssPreprocessor.name === 'Stylus') this.npmInstall([
-      'stylus-loader'
-    ], {
-      saveDev: true
-    })
-    */
   }
 })
