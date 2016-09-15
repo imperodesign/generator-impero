@@ -223,7 +223,6 @@ module.exports = yeoman.Base.extend({
   },
 
   install () {
-    return // temp dev TODO
     // Install dependencies in scaffolded package.json
     this.installDependencies({
       bower: false
