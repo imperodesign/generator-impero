@@ -1,0 +1,34 @@
+#!/bin/bash
+
+export APP_NAME=<%= name %>
+
+if [ "$APP_NAME" = "" ]; then
+  echo "APP_NAME must be set."
+  exit;
+fi
+
+if [ "$1" = "prd" ]; then
+  # Create app in production
+  echo "[PRD] CREATE"
+  DOKKU_HOST=dokku.prd.paas.impero.me $HOME/.dokku/contrib/dokku_client.sh apps:create $APP_NAME
+
+  # Add git remote in production
+  echo "[PRD] ADD GIT REMOTE"
+  git remote add dokku-prd dokku@dokku.prd.paas.impero.me:$APP_NAME
+
+  # Setup env vars in production
+  echo "[PRD] SET ENV VARS"
+  echo "Missing implementation... Skip."
+else
+  # Create app in production
+  echo "[STG] CREATE"
+  DOKKU_HOST=stg.paas.impero.me $HOME/.dokku/contrib/dokku_client.sh apps:create $APP_NAME
+
+  # Add git remote in production
+  echo "[STG] ADD GIT REMOTE"
+  git remote add dokku-stg dokku@dokku.stg.paas.impero.me:$APP_NAME
+
+  # Setup env vars in production
+  echo "[STG] SET ENV VARS"
+  echo "Missing implementation... Skip."
+fi

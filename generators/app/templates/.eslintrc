@@ -1,0 +1,26 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "rules": {
+    "quotes": [
+      2,
+      "single"
+    ],
+    "eqeqeq": [
+      2,
+      "smart"
+    ],
+    "keyword-spacing": [
+      "error", {
+        "before": true,
+        "after": true
+      }
+    ]
+  }
+}

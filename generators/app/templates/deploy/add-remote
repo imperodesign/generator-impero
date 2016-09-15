@@ -1,0 +1,18 @@
+#!/bin/bash
+
+export APP_NAME=<%= name %>
+
+if [ "$APP_NAME" = "" ]; then
+  echo "APP_NAME must be set."
+  exit;
+fi
+
+if [ "$1" = "prd" ]; then
+  # Add git remote in production
+  echo "Adding production remote"
+  git remote add dokku-prd dokku@dokku.prd.paas.impero.me:$APP_NAME
+else
+  # Add git remote in staging
+  echo "Adding staging remote"
+  git remote add dokku-stg dokku@dokku.stg.paas.impero.me:$APP_NAME
+fi

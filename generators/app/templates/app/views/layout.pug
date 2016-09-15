@@ -1,0 +1,15 @@
+doctype html
+html(lang='en')
+  head
+    include components/head
+  body
+    block nav
+      include components/nav
+
+    block content
+
+    block footer
+      include components/footer
+
+    block scripts
+      script(src='/assets/dist/bundle.js')

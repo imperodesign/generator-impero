@@ -1,0 +1,18 @@
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[*.{js, <%= cssExt %>, pug}]
+charset = utf-8
+indent_style = space
+indent_size = 2
+
+[*.{js, <%= cssExt %>}]
+trim_trailing_whitespace = true
+
+[*.pug]
+trim_trailing_whitespace = false

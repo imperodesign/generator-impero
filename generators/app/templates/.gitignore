@@ -1,0 +1,10 @@
+# npm
+node_modules/
+npm-debug.log
+
+# Generated files
+**/dist/
+
+# Misc
+.DS_Store
+.env

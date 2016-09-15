@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  main.home main block on homepage
+  br
+  hr
+  br
+  form(class='js-example-trigger', style='color: #999')
+    label(for='example') Type something here to prove state isn't lost
+    br
+    input(type='text', name='example')
+    h4
+      | Counter:&nbsp;
+      span(class='js-example') 0
+    button(type='submit') Click me for magic

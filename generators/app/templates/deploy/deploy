@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export APP_NAME=<%= name %>
+
+if [ "$APP_NAME" = "" ]; then
+  echo "APP_NAME must be set."
+  exit;
+fi
+
+if [ "$1" = "prd" ]; then
+  echo "Deploying to production"
+  git push dokku-prd master:master
+else
+  echo "Deploying to staging"
+  git push dokku-stg development:master
+fi
