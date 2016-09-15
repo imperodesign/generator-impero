@@ -4,7 +4,7 @@ const sassImporter = require('sass-module-importer')<% } %>
 
 module.exports = {
   context: __dirname,
-  entry: './app/src/js/main.js',
+  entry: './app/src/scripts/main.js',
   output: {
     path: __dirname + '/app/assets/dist',
     publicPath: '/assets/dist',

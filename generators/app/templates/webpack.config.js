@@ -12,7 +12,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './app/src/js/main.js'
+    './app/src/scripts/main.js'
   ],
   output: {
     path: __dirname + '/app/assets/dist',
