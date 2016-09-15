@@ -209,6 +209,16 @@ module.exports = yeoman.Base.extend({
       devDependencies: cssOptionalDeps[this.props.cssPreprocessor.name]
     })
 
+    // Sort the dependencies
+    // This is absolutely not needed but a nice-to-have :-)
+    let sortedDeps = {}
+
+    Object.keys(deps.devDependencies).sort().forEach(key => {
+      sortedDeps[key] = deps.devDependencies[key]
+    })
+
+    deps.devDependencies = sortedDeps
+
     this.fs.writeJSON(this.destinationPath('package.json'), deps)
   },
 
