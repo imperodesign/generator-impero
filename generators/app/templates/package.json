@@ -30,16 +30,12 @@
     "csso-loader": "^0.2.0",
     "dotenv": "^2.0.0",
     "eslint": "^3.4.0",
-    "eslint-loader": "^1.5.0",<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
-    "node-sass": "^3.9.3",
-    <% } %>"nodemon": "^1.10.2",
+    "eslint-loader": "^1.5.0",
+    "nodemon": "^1.10.2",
     "postcss-loader": "^0.13.0",
-    "run-sequence": "^1.2.2",<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
-    "sass-loader": "^4.0.2",
-    "sass-module-importer": "^1.2.1",
-    <% } %>"style-loader": "^0.13.1",<% if (cssChoice === 'Stylus') { %>
-    "stylus-loader": "^2.3.1",
-    <% } %>"webpack": "^2.1.0-beta.22",
+    "run-sequence": "^1.2.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.1.0-beta.22",
     "webpack-dev-middleware": "^1.7.0",
     "webpack-dev-server": "^2.1.0-beta.4",
     "webpack-hot-middleware": "^2.12.2"

@@ -175,7 +175,6 @@ module.exports = yeoman.Base.extend({
     )
 
     // Copy CSS
-    console.log(`app/src/_css/${this.props.cssPreprocessor.templateDir}`)
     this.fs.copy(
       this.templatePath(`app/src/_css/${this.props.cssPreprocessor.templateDir}`),
       this.destinationPath('app/src/styles')
@@ -209,6 +208,8 @@ module.exports = yeoman.Base.extend({
     extend(deps, {
       devDependencies: cssOptionalDeps[this.props.cssPreprocessor.name]
     })
+
+    this.fs.writeJSON(this.destinationPath('package.json'), deps)
   },
 
   install () {
