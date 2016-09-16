@@ -3,7 +3,7 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-impero using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-impero using [npm](https://www.npmjs.com/)
 
 ```bash
 npm i -g yo generator-impero
@@ -14,6 +14,16 @@ Then generate your new project:
 ```bash
 yo impero
 ```
+
+## Help
+
+If you have any immediate issues, the first port of call is Yeoman Doctor:
+
+```bash
+yo doctor
+```
+
+Failing that, it's also possible that you'll need to open a new terminal window for Yeoman to pick up on the newly installed generator
 
 ## Getting To Know Yeoman
 

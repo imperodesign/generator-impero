@@ -145,8 +145,9 @@ module.exports = yeoman.Base.extend({
       this.templatePath('.eslintrc'),
       this.destinationPath('.eslintrc')
     )
+    // Prefixed with an underscore, else npm will rename it to .npmignore
     this.fs.copy(
-      this.templatePath('.gitignore'),
+      this.templatePath('_.gitignore'),
       this.destinationPath('.gitignore')
     )
     this.fs.copy(
