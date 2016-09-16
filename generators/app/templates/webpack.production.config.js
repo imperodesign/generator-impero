@@ -1,3 +1,5 @@
+'use strict'
+
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
 const sassImporter = require('sass-module-importer')<% } %><% if (cssChoice === 'Stylus') { %>

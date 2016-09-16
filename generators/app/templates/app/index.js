@@ -1,3 +1,5 @@
+'use strict'
+
 // Dependencies
 require('dotenv').load()
 const express = require('express')

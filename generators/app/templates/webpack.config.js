@@ -1,3 +1,5 @@
+'use strict'
+
 const fs = require('fs')
 const webpack = require('webpack')
 const browsersync = require('browser-sync-webpack-plugin')
