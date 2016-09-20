@@ -55,6 +55,11 @@ module.exports = yeoman.Base.extend({
       name: 'copyEnv',
       message: 'Copy .env.example to .env?',
       default: true
+    }, {
+      type: 'confirm',
+      name: 'installDeps',
+      message: 'Install dependencies?',
+      default: true
     }]
 
     return this.prompt(prompts).then(answers => {
@@ -287,7 +292,7 @@ module.exports = yeoman.Base.extend({
 
   install () {
     // Install dependencies in scaffolded package.json
-    this.installDependencies({
+    if (this.props.installDeps) this.installDependencies({
       bower: false
     })
 
