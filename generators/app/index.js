@@ -102,13 +102,13 @@ module.exports = yeoman.Base.extend({
       switch (this.props.jsLang.name) {
         case 'Vanilla':
           this.props.jsLang.templateDir = 'vanilla'
-          this.props.jsLang.loader = 'babel?presets[]=es2015,stage-1&'
+          this.props.jsLang.loader = 'babel'
           this.props.jsLang.fileExt = 'js',
           this.props.jsLang.linter = 'eslint'
           break
         case 'TypeScript':
           this.props.jsLang.templateDir = 'typescript'
-          this.props.jsLang.loader = 'babel?presets[]=es2015,stage-1!ts?'
+          this.props.jsLang.loader = 'babel!ts?sourceMap'
           this.props.jsLang.fileExt = 'ts',
           this.props.jsLang.linter = 'tslint'
           break

@@ -24,6 +24,9 @@ module.exports = {
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
+        query: {
+          presets: ['es2015', 'stage-1']
+        },
         exclude: /node_modules/
       },
       {

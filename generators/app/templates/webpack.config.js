@@ -55,7 +55,10 @@ module.exports = {
     loaders: [
       {
         test: /\.<%= jsExt %>$/,
-        loader: '<%= jsLoader %>sourceMap',
+        loader: '<%- jsLoader %>',
+        query: {
+          presets: ['es2015', 'stage-1']
+        },
         exclude: /node_modules/
       },
       {
