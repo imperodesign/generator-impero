@@ -8,7 +8,10 @@ const sassImporter = require('sass-module-importer')<% } %><% if (cssLang === 'S
 const rupture = require('rupture')<% } %>
 
 if (fs.existsSync(`${__dirname}/.env`)) require('dotenv').load()
-else process.env.NODE_PORT = 5000
+else {
+  process.env.NODE_ENV = 'development'
+  process.env.NODE_PORT = 5000
+}
 
 module.exports = {
   context: __dirname,
@@ -27,6 +30,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      DEVMODE: process.env.NODE_ENV === 'development'
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new browsersync(

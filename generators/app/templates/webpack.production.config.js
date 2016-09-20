@@ -5,6 +5,8 @@ const autoprefixer = require('autoprefixer')<% if (cssLang === 'Sass' || cssLang
 const sassImporter = require('sass-module-importer')<% } %><% if (cssLang === 'Stylus') { %>
 const rupture = require('rupture')<% } %>
 
+if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
+
 module.exports = {
   context: __dirname,
   entry: './app/src/scripts/main.<%= jsExt %>',
@@ -18,6 +20,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.DefinePlugin({
+      DEVMODE: process.env.NODE_ENV === 'development'
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin()
