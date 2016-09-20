@@ -105,11 +105,13 @@ module.exports = yeoman.Base.extend({
           this.props.jsLang.loader = 'babel?presets[]=es2015,stage-1&'
           this.props.jsLang.fileExt = 'js',
           this.props.jsLang.linter = 'eslint'
+          break
         case 'TypeScript':
           this.props.jsLang.templateDir = 'typescript'
           this.props.jsLang.loader = 'babel?presets[]=es2015,stage-1!ts?'
           this.props.jsLang.fileExt = 'ts',
           this.props.jsLang.linter = 'tslint'
+          break
         // This should never happen
         default:
           break
