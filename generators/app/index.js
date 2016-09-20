@@ -42,11 +42,13 @@ module.exports = yeoman.Base.extend({
       type: 'list',
       name: 'jsLang',
       message: 'Which JS language/compiler? (all include ES2015 / Babel)',
+      // TypeScript is disabled until the loader's compatibility with Node 6.x is fixed
+      // Further development will likely be required after that point
       choices: [{
         name: 'Vanilla'
-      }, {
+      }/*, {
         name: 'TypeScript'
-      }],
+      }*/],
       default: 0
     }, {
       type: 'confirm',
