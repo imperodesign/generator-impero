@@ -11,5 +11,7 @@ html(lang='en')
     block footer
       include components/footer
 
-    block scripts
+    if process.env.NODE_ENV === 'development'
+      script(src='/dev-assets/bundle.js')
+    else
       script(src='/assets/dist/bundle.js')

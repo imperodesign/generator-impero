@@ -11,7 +11,6 @@ module.exports = {
   entry: './app/src/scripts/main.<%= jsExt %>',
   output: {
     path: __dirname + '/app/assets/dist',
-    publicPath: '/assets/dist',
     filename: 'bundle.js'
   },
   resolve: {

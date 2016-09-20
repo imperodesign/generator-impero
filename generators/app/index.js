@@ -291,9 +291,12 @@ module.exports = yeoman.Base.extend({
       bower: false
     })
 
+    /* TODO
+    * install 'typings' globally or at least inform the user of their possible need to do so
+
     if (this.props.jsLang.name === 'TypeScript') {
-      // TODO
-      // install 'typings' globally or at least inform the user of their possible need to do so
+      //
     }
+    */
   }
 })

@@ -21,7 +21,7 @@ module.exports = {
   ],
   output: {
     path: __dirname + '/app/assets/dist',
-    publicPath: '/assets/dist',
+    publicPath: '/dev-assets',
     filename: 'bundle.js'
   },
   resolve: {
