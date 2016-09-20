@@ -3,8 +3,8 @@
 const fs = require('fs')
 const webpack = require('webpack')
 const browsersync = require('browser-sync-webpack-plugin')
-const autoprefixer = require('autoprefixer')<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
-const sassImporter = require('sass-module-importer')<% } %><% if (cssChoice === 'Stylus') { %>
+const autoprefixer = require('autoprefixer')<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
+const sassImporter = require('sass-module-importer')<% } %><% if (cssLang === 'Stylus') { %>
 const rupture = require('rupture')<% } %>
 
 if (fs.existsSync(`${__dirname}/.env`)) require('dotenv').load()
@@ -15,7 +15,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './app/src/scripts/main.js'
+    './app/src/scripts/main.<%= jsExt %>'
   ],
   output: {
     path: __dirname + '/app/assets/dist',
@@ -47,21 +47,15 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
-        loader: 'eslint',
+        test: /\.<%= jsExt %>$/,
+        loader: '<%= jsLinter %>',
         exclude: /node_modules/
       }
     ],
     loaders: [
       {
-        test: /\.js$/,
-        loader: 'babel',
-        query: {
-          presets: [
-            'es2015',
-            'stage-1'
-          ]
-        },
+        test: /\.<%= jsExt %>$/,
+        loader: '<%= jsLoader %>sourceMap',
         exclude: /node_modules/
       },
       {
@@ -80,10 +74,10 @@ module.exports = {
     emitError: true,
     emitWarning: true
   },
-  postcss: () => [autoprefixer],<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
+  postcss: () => [autoprefixer],<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
   sassLoader: {
     importer: sassImporter()
-  }<% } %><% if (cssChoice === 'Stylus') { %>
+  }<% } %><% if (cssLang === 'Stylus') { %>
   stylus: {
     use: [rupture()]
   }<% } %>

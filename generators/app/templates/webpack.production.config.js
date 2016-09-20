@@ -1,13 +1,13 @@
 'use strict'
 
 const webpack = require('webpack')
-const autoprefixer = require('autoprefixer')<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
-const sassImporter = require('sass-module-importer')<% } %><% if (cssChoice === 'Stylus') { %>
+const autoprefixer = require('autoprefixer')<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
+const sassImporter = require('sass-module-importer')<% } %><% if (cssLang === 'Stylus') { %>
 const rupture = require('rupture')<% } %>
 
 module.exports = {
   context: __dirname,
-  entry: './app/src/scripts/main.js',
+  entry: './app/src/scripts/main.<%= jsExt %>',
   output: {
     path: __dirname + '/app/assets/dist',
     publicPath: '/assets/dist',
@@ -22,14 +22,8 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loader: 'babel',
-        query: {
-          presets: [
-            'es2015',
-            'stage-1'
-          ]
-        },
+        test: /\.<%= jsExt %>$/,
+        loader: '<%= jsLoader %>',
         exclude: /node_modules/
       },
       {
@@ -44,10 +38,10 @@ module.exports = {
       }
     ]
   },
-  postcss: () => [autoprefixer],<% if (cssChoice === 'Sass' || cssChoice === 'Sass (SCSS)') { %>
+  postcss: () => [autoprefixer],<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
   sassLoader: {
     importer: sassImporter()
-  }<% } %><% if (cssChoice === 'Stylus') { %>
+  }<% } %><% if (cssLang === 'Stylus') { %>
   stylus: {
     use: [rupture()]
   }<% } %>
