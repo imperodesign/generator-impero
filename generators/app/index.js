@@ -226,15 +226,9 @@ module.exports = yeoman.Base.extend({
     )
 
     // Copy JS
-    this.fs.copyTpl(
-      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/main.${this.props.jsLang.fileExt}`),
-      this.destinationPath(`app/src/scripts/main.${this.props.jsLang.fileExt}`), {
-        cssExt: this.props.cssLang.fileExt
-      }
-    )
     this.fs.copy(
-      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/modules`),
-      this.destinationPath('app/src/scripts/modules')
+      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}`),
+      this.destinationPath('app/src/scripts')
     )
 
     // Add dependencies based upon selected options
@@ -300,7 +294,8 @@ module.exports = yeoman.Base.extend({
     })
 
     if (this.props.jsLang.name === 'TypeScript') {
-      // install 'typings' globally TODO
+      // TODO
+      // install 'typings' globally or at least inform the user of their possible need to do so
     }
   }
 })

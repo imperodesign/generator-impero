@@ -22,6 +22,9 @@ module.exports = {
     publicPath: '/assets/dist',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['', '.<%= jsExt %>', '.<%= cssExt %>']
+  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),

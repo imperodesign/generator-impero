@@ -4,7 +4,7 @@ if (module.hot) {
 }
 
 // Webpack entrypoint for CSS
-import '../styles/main.<%= cssExt %>'
+import '../styles/main'
 
 // Babel is transpiling, and on top of that the polyfills below enable support for the following down to and including IE9:
 // Array.from()
