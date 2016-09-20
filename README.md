@@ -1,5 +1,4 @@
 # generator-impero [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
 
 ## Installation
 
@@ -15,6 +14,23 @@ Then generate your new project:
 yo impero
 ```
 
+## Information
+
+This is a generator providing the following options:
+
+- Sass (incl/ SCSS) / Stylus / Sourdough (coming soon)
+- Vanilla JS / TypeScript (coming soon)
+
+...based upon a foundation of the following:
+
+- Node / Express on the backend
+- Pug templating language
+- npm for package management (frontend & backend)
+- dotenv for enviromment variables
+- Babel transpilation for ES2015+ down to ES5 and a few useful polyfills
+
+Minimum browser support for all supported configurations is IE9+
+
 ## Help
 
 If you have any immediate issues, the first port of call is Yeoman Doctor:
@@ -24,11 +40,6 @@ yo doctor
 ```
 
 Failing that, it's also possible that you'll need to open a new terminal window for Yeoman to pick up on the newly installed generator
-
-## Getting To Know Yeoman
-
-This project is based upon the generator-generator generator (generator-ception)
-
 
 [npm-image]: https://badge.fury.io/js/generator-impero.svg
 [npm-url]: https://npmjs.org/package/generator-impero
