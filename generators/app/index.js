@@ -237,13 +237,11 @@ module.exports = yeoman.Base.extend({
     const cssOptionalDeps = {
       'Sass': {
         'node-sass': '^3.9.3',
-        'sass-loader': '^4.0.2',
-        'sass-module-importer': '^1.2.1'
+        'sass-loader': '^4.0.2'
       },
       'Sass (SCSS)': {
         'node-sass': '^3.9.3',
-        'sass-loader': '^4.0.2',
-        'sass-module-importer': '^1.2.1'
+        'sass-loader': '^4.0.2'
       },
       'Stylus': {
         'rupture': '^0.6.1',

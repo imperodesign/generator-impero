@@ -3,8 +3,7 @@
 const fs = require('fs')
 const webpack = require('webpack')
 const browsersync = require('browser-sync-webpack-plugin')
-const autoprefixer = require('autoprefixer')<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
-const sassImporter = require('sass-module-importer')<% } %><% if (cssLang === 'Stylus') { %>
+const autoprefixer = require('autoprefixer')<% if (cssLang === 'Stylus') { %>
 const rupture = require('rupture')<% } %>
 
 if (fs.existsSync(`${__dirname}/.env`)) require('dotenv').load()
@@ -86,10 +85,7 @@ module.exports = {
     emitError: true,
     emitWarning: true
   },
-  postcss: () => [autoprefixer],<% if (cssLang === 'Sass' || cssLang === 'Sass (SCSS)') { %>
-  sassLoader: {
-    importer: sassImporter()
-  }<% } %><% if (cssLang === 'Stylus') { %>
+  postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
   stylus: {
     use: [rupture()]
   }<% } %>
