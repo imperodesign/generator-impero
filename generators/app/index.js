@@ -265,7 +265,7 @@ module.exports = yeoman.Base.extend({
         'sass-loader': '^4.0.2'
       },
       'Sass (SCSS)': {
-        'node-sass': '^3.9.3',
+        'node-sass': '^3.10.0',
         'sass-loader': '^4.0.2'
       },
       'Stylus': {
@@ -278,7 +278,7 @@ module.exports = yeoman.Base.extend({
     const jsOptionalDeps = {
       'Vanilla': {
         'babel-eslint': '^6.1.2',
-        'eslint': '^3.4.0',
+        'eslint': '^3.5.0',
         'eslint-loader': '^1.5.0'
       },
       'TypeScript': {
