@@ -4,6 +4,7 @@ const yeoman = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
 const extend = require('lodash').merge
+const sortNpmDeps = require('./sortNpmDeps')
 
 module.exports = yeoman.Base.extend({
   prompting () {
@@ -256,15 +257,24 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('app/src/scripts/modules')
     )
 
-    // Add dependencies based upon selected options
+    // Load dependencies from generated/copied package.json
     let deps = this.fs.readJSON(this.destinationPath('package.json'), {})
+
+    // Define optional dependencies
+    const legacyOptionalDeps = {
+      'classlist.js': '^1.1.20150312',
+      'es6-promise': '^3.3.1',
+      'matchmedia-polyfill': '^0.3.0',
+    }
 
     const cssOptionalDeps = {
       'Sass': {
+        'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.9.3',
         'sass-loader': '^4.0.2'
       },
       'Sass (SCSS)': {
+        'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.10.0',
         'sass-loader': '^4.0.2'
       },
@@ -289,6 +299,11 @@ module.exports = yeoman.Base.extend({
       }
     }
 
+    // Merge them as selected
+    if (this.props.browserSupport === 'legacy') extend(deps, {
+      dependencies: legacyOptionalDeps
+    })
+
     extend(deps, {
       devDependencies: cssOptionalDeps[this.props.cssLang.name]
     })
@@ -298,15 +313,9 @@ module.exports = yeoman.Base.extend({
     })
 
     // Sort the dependencies
-    // This is absolutely not needed but a nice-to-have :-)
-    let sortedDeps = {}
+    deps = sortNpmDeps(deps)
 
-    Object.keys(deps.devDependencies).sort().forEach(key => {
-      sortedDeps[key] = deps.devDependencies[key]
-    })
-
-    deps.devDependencies = sortedDeps
-
+    // Write to file
     this.fs.writeJSON(this.destinationPath('package.json'), deps)
   },
 
