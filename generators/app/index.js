@@ -313,7 +313,7 @@ module.exports = yeoman.Base.extend({
     })
 
     // Sort the dependencies
-    deps = sortNpmDeps(deps)
+    sortNpmDeps(deps)
 
     // Write to file
     this.fs.writeJSON(this.destinationPath('package.json'), deps)

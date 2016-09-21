@@ -62,7 +62,7 @@ module.exports = {
           emitError: true,
           emitWarning: true
         },
-        postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
+        postcss: () => [autoprefixer]<% if (cssLang === 'Stylus') { %>,
         stylus: {
           use: [rupture()]
         }<% } %>

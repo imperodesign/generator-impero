@@ -30,7 +30,7 @@ module.exports = {
         // Enables this workaround setup to work
         context: __dirname,
         // Actual options
-        postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
+        postcss: () => [autoprefixer]<% if (cssLang === 'Stylus') { %>,
         stylus: {
           use: [rupture()]
         }<% } %>
