@@ -27,7 +27,7 @@ This is a generator providing the following options:
 - Pug templating language
 - npm for package management (frontend & backend)
 - dotenv for enviromment variables
-- Babel transpilation for ES2015 down to ES5 and optionally a few useful polyfills (detailed below)
+- Babel transpilation for ES2017, ES2016 & ES2015 down to ES5 and optionally a few useful polyfills (detailed below)
 
 ### Legacy Browsers
 
