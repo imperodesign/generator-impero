@@ -25,7 +25,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.<%= jsExt %>', '.<%= cssExt %>']
+    extensions: ['.<%= jsExt %>', '.<%= cssExt %>']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -50,17 +50,33 @@ module.exports = {
       {
         reload: false
       }
-    )
+    ),
+    // This is until these loaders are updated for the new config system
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // Enables this workaround setup to work
+        context: __dirname,
+        // Actual options
+        eslint: {
+          configFile: './.eslintrc',
+          emitError: true,
+          emitWarning: true
+        },
+        postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
+        stylus: {
+          use: [rupture()]
+        }<% } %>
+      }
+    })
   ],
   module: {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLinter %>',
         exclude: /node_modules/
-      }
-    ],
-    loaders: [
+      },
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%- jsLoader %>',
@@ -79,14 +95,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  eslint: {
-    configFile: './.eslintrc',
-    emitError: true,
-    emitWarning: true
-  },
-  postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
-  stylus: {
-    use: [rupture()]
-  }<% } %>
+  }
 }

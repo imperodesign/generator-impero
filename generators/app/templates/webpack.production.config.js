@@ -14,7 +14,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.<%= jsExt %>', '.<%= cssExt %>']
+    extensions: ['.<%= jsExt %>', '.<%= cssExt %>']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -23,10 +23,22 @@ module.exports = {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
+    // This is until these loaders are updated for the new config system
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        // Enables this workaround setup to work
+        context: __dirname,
+        // Actual options
+        postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
+        stylus: {
+          use: [rupture()]
+        }<% } %>
+      }
+    })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
@@ -46,9 +58,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  postcss: () => [autoprefixer],<% if (cssLang === 'Stylus') { %>
-  stylus: {
-    use: [rupture()]
-  }<% } %>
+  }
 }
