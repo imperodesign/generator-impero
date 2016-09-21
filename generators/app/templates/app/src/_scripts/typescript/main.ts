@@ -6,7 +6,7 @@ if (module.hot) {
 // Using Webpack's DefinePlugin we can use global constants such as devMode to have some code (e.g. logging) stay in our codebase but be stripped out during production builds
 if (DEVMODE) console.log('Dev mode active')
 
-// Webpack entrypoint for CSS
+// Webpack entrypoint for styles
 import '../styles/main'
 <% if (browserSupport === 'legacy') { %>
 // Polyfills
