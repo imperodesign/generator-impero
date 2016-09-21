@@ -51,6 +51,16 @@ module.exports = yeoman.Base.extend({
       }*/],
       default: 0
     }, {
+      type: 'list',
+      name: 'browserSupport',
+      message: 'Browser support?',
+      choices: [{
+        name: 'Legacy (IE9+)',
+      }, {
+        name: 'Modern (Chrome, Firefox, Edge, Safari)'
+      }],
+      default: 0
+    }, {
       type: 'confirm',
       name: 'copyEnv',
       message: 'Copy .env.example to .env?',
@@ -65,6 +75,9 @@ module.exports = yeoman.Base.extend({
     return this.prompt(prompts).then(answers => {
       // To access props later use this.props.exampleAnswer
       this.props = answers
+
+      if (this.props.browserSupport === 'Legacy (IE9+)') this.props.browserSupport = 'legacy'
+      else if (this.props.browserSupport === 'Modern (Chrome, Firefox, Edge, Safari)') this.props.browserSupport = 'modern'
 
       // Make object of CSS choice details
       this.props.cssLang = {
@@ -145,7 +158,8 @@ module.exports = yeoman.Base.extend({
       this.templatePath('README.md'),
       this.destinationPath('README.md'), {
         name: this.props.name,
-        cssName: this.props.cssLang.name
+        cssName: this.props.cssLang.name,
+        browserSupport: this.props.browserSupport
       }
     )
     this.fs.copyTpl(
@@ -231,9 +245,15 @@ module.exports = yeoman.Base.extend({
     )
 
     // Copy JS
+    this.fs.copyTpl(
+      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/main.${this.props.jsLang.fileExt}`),
+      this.destinationPath(`app/src/scripts/main.${this.props.jsLang.fileExt}`), {
+        browserSupport: this.props.browserSupport
+      }
+    )
     this.fs.copy(
-      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}`),
-      this.destinationPath('app/src/scripts')
+      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/modules`),
+      this.destinationPath('app/src/scripts/modules')
     )
 
     // Add dependencies based upon selected options

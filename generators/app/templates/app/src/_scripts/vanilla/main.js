@@ -8,13 +8,8 @@ if (DEVMODE) console.log('Dev mode active')
 
 // Webpack entrypoint for CSS
 import '../styles/main'
-
-// Babel is transpiling, and on top of that the polyfills below enable support for the following down to and including IE9:
-// Array.from()
-// String.prototype.includes()
-// Element.classList
-// Promises
-// Window.matchMedia()
+<% if (browserSupport === 'legacy') { %>
+// Polyfills
 if (!Array.from) {
   Array.from = object => {
     'use strict'
@@ -30,7 +25,7 @@ if (!String.prototype.includes) {
 import 'classlist.js'
 import 'es6-promise'
 import 'matchmedia-polyfill'
-
+<% } %>
 // Event emitter to allow communication between modules
 import {EventEmitter} from 'events'
 const app = new EventEmitter()

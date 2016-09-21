@@ -27,9 +27,23 @@ This is a generator providing the following options:
 - Pug templating language
 - npm for package management (frontend & backend)
 - dotenv for enviromment variables
-- Babel transpilation for ES2015+ down to ES5 and a few useful polyfills
+- Babel transpilation for ES2015 down to ES5 and optionally a few useful polyfills (detailed below)
 
-Minimum browser support for all supported configurations is IE9+
+### Legacy Browsers
+
+During setup you will be asked for your targeted browser support. "Modern" is defined as the latest versions of Chrome, Firefox, Edge, and Safari. "Legacy" is defined as IE9+
+
+The following JS polyfills are included in legacy builds:
+
+- Array.from() - no native support in IE, Opera
+- String.prototype.includes() - no native support in IE, Opera
+- Element.classList - no native support below IE10, and only partial support in IE10 & IE11
+- Promise - no native support in IE
+- Window.matchMedia() - no native support below IE10
+
+If you select the modern browsers configuration these polyfills will not be included
+
+For now, Babel transpilation down to ES5 will be included in all builds
 
 ## Help
 

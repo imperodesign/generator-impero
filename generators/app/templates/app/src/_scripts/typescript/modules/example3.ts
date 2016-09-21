@@ -1,6 +1,6 @@
 export default function (el) {
-  let prevNumber = parseInt(el.textContent)
-  let newNumber = prevNumber + 1
+  const prevNumber = parseInt(el.textContent)
+  const newNumber = prevNumber + 1
 
   el.textContent = newNumber.toString()
 }
