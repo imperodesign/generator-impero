@@ -2,7 +2,7 @@
 
 # <%= name %>
 
-Built to your liking with the Impero generator with the following features: <%= cssName %>
+Built to your liking with the Impero generator with the following features: <%= cssName %><% if (jsName !== 'Vanilla') { %>, <%= jsName %><% } %>
 
 <% if (browserSupport === 'legacy') { %>Browser support is IE9+<% } %><% if (browserSupport === 'modern') { %>Browser support is modern browsers only (Chrome, Firefox, Edge, Safari)<% } %>
 

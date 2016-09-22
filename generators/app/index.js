@@ -42,11 +42,13 @@ module.exports = yeoman.Base.extend({
     }, {
       type: 'list',
       name: 'jsLang',
-      message: 'Which JS language/compiler? (all include ES2015 / Babel)',
+      message: 'Which JS feature set? (all include ES2015 / Babel)',
       // TypeScript is disabled until the loader's compatibility with Node 6.x is fixed
       // Further development will likely be required after that point
       choices: [{
         name: 'Vanilla'
+      }, {
+        name: 'React'
       }/*, {
         name: 'TypeScript'
       }*/],
@@ -125,6 +127,12 @@ module.exports = yeoman.Base.extend({
           this.props.jsLang.fileExt = 'js',
           this.props.jsLang.linter = 'eslint'
           break
+        case 'React':
+          this.props.jsLang.templateDir = 'react'
+          this.props.jsLang.loader = 'babel'
+          this.props.jsLang.fileExt = 'js',
+          this.props.jsLang.linter = 'eslint'
+          break
         case 'TypeScript':
           this.props.jsLang.templateDir = 'typescript'
           this.props.jsLang.loader = 'babel!ts?sourceMap'
@@ -160,6 +168,7 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('README.md'), {
         name: this.props.name,
         cssName: this.props.cssLang.name,
+        jsName: this.props.jsLang.name,
         browserSupport: this.props.browserSupport
       }
     )
@@ -169,6 +178,7 @@ module.exports = yeoman.Base.extend({
         cssLang: this.props.cssLang.name,
         cssLoader: this.props.cssLang.loader,
         cssExt: this.props.cssLang.fileExt,
+        jsLang: this.props.jsLang.name,
         jsLoader: this.props.jsLang.loader,
         jsExt: this.props.jsLang.fileExt,
         jsLinter: this.props.jsLang.linter
@@ -180,6 +190,7 @@ module.exports = yeoman.Base.extend({
         cssLang: this.props.cssLang.name,
         cssLoader: this.props.cssLang.loader,
         cssExt: this.props.cssLang.fileExt,
+        jsLang: this.props.jsLang.name,
         jsLoader: this.props.jsLang.loader,
         jsExt: this.props.jsLang.fileExt,
         jsLinter: this.props.jsLang.linter
@@ -201,9 +212,11 @@ module.exports = yeoman.Base.extend({
       this.templatePath('.env.example'),
       this.destinationPath('.env')
     )
-    if (this.props.jsLang.name === 'Vanilla') this.fs.copy(
+    if (this.props.jsLang.name !== 'TypeScript') this.fs.copyTpl(
       this.templatePath('.eslintrc'),
-      this.destinationPath('.eslintrc')
+      this.destinationPath('.eslintrc'), {
+        jsLang: this.props.jsLang.name
+      }
     )
     // Prefixed with an underscore, else npm will rename it to .npmignore
     this.fs.copy(
@@ -267,7 +280,7 @@ module.exports = yeoman.Base.extend({
       'matchmedia-polyfill': '^0.3.0',
     }
 
-    const cssOptionalDeps = {
+    const cssOptionalDevDeps = {
       'Sass': {
         'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.9.3',
@@ -286,10 +299,27 @@ module.exports = yeoman.Base.extend({
     }
 
     const jsOptionalDeps = {
+      'Vanilla': {},
+      'React': {
+        'react': '^15.3.2',
+        'react-dom': '^15.3.2'
+      },
+      'TypeScript': {}
+    }
+
+    const jsOptionalDevDeps = {
       'Vanilla': {
         'babel-eslint': '^6.1.2',
         'eslint': '^3.5.0',
         'eslint-loader': '^1.5.0'
+      },
+      'React': {
+        'babel-eslint': '^6.1.2',
+        'babel-preset-react': '^6.11.1',
+        'eslint': '^3.5.0',
+        'eslint-loader': '^1.5.0',
+        'eslint-plugin-react': '^6.3.0',
+        'react-hot-loader': '^3.0.0-beta.5'
       },
       'TypeScript': {
         'ts-loader': '^0.8.2',
@@ -305,11 +335,15 @@ module.exports = yeoman.Base.extend({
     })
 
     extend(deps, {
-      devDependencies: cssOptionalDeps[this.props.cssLang.name]
+      dependencies: jsOptionalDeps[this.props.jsLang.name]
     })
 
     extend(deps, {
-      devDependencies: jsOptionalDeps[this.props.jsLang.name]
+      devDependencies: cssOptionalDevDeps[this.props.cssLang.name]
+    })
+
+    extend(deps, {
+      devDependencies: jsOptionalDevDeps[this.props.jsLang.name]
     })
 
     // Sort the dependencies

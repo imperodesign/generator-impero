@@ -6,7 +6,10 @@
   },
   "ecmaFeatures": {
     "modules": true
-  },
+  },<% if (jsLang === 'React') { %>
+  "plugins": [
+    "react"
+  ],<% } %>
   "rules": {
     "quotes": [
       2,

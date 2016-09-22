@@ -42,8 +42,9 @@ module.exports = {
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
-        query: {
-          presets: ['es2015', 'es2016', 'es2017']
+        query: {<% if (jsLang === 'React') { %>
+          plugins: ['react-hot-loader/babel'],<% } %>
+          presets: ['es2015', 'es2016', 'es2017'<% if (jsLang === 'React') { %>, 'react'<% } %>]
         },
         exclude: /node_modules/
       },
