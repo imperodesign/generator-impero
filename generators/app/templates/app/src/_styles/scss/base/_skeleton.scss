@@ -10,6 +10,7 @@ a {
   color: inherit;
 
   &:active,
-  &:focus
+  &:focus {
     outline: none;
+  }
 }
