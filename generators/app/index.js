@@ -16,7 +16,7 @@ module.exports = yeoman.Base.extend({
     const prompts = [{
       type: 'input',
       name: 'name',
-      message: `Your project name (must be ${chalk.underline('unique')})?`,
+      message: `Your project name (must be ${chalk.underline('unique')} and ${chalk.underline('alphanumeric only')})?`,
       //Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
