@@ -89,7 +89,7 @@ module.exports = {
       {
         test: /\.<%= cssExt %>$/,
         loaders: [
-          'style',
+          'style?fixUrls', // This is to fix sourcemaps breaking relative URLs in CSS
           'css?sourceMap',
           'postcss',
           '<%= cssLoader %>?sourceMap'
