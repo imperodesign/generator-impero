@@ -1,29 +1,17 @@
 {
   "parser": "babel-eslint",
+  "extends": ["standard"<% if (jsLang === 'React') { %>, "standard-react"<% } %>],
   "env": {
     "browser": true,
     "es6": true
   },
   "ecmaFeatures": {
     "modules": true
-  },<% if (jsLang === 'React') { %>
-  "plugins": [
-    "react"
-  ],<% } %>
+  },
+  "globals": {
+    "DEVMODE": false
+  }<% if (jsLang === 'React') { %>,
   "rules": {
-    "quotes": [
-      2,
-      "single"
-    ],
-    "eqeqeq": [
-      2,
-      "smart"
-    ],
-    "keyword-spacing": [
-      "error", {
-        "before": true,
-        "after": true
-      }
-    ]
-  }
+    "jsx-quotes": [2, "prefer-double"]
+  }<% } %>
 }

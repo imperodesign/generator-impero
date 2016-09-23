@@ -236,8 +236,8 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('app/assets/humans.txt')
     )
     this.fs.copy(
-      this.templatePath('app/assets/img/.gitkeep'),
-      this.destinationPath('app/assets/img/.gitkeep')
+      this.templatePath('app/assets/img'),
+      this.destinationPath('app/assets/img')
     )
     this.fs.copy(
       this.templatePath('app/views'),
@@ -311,14 +311,22 @@ module.exports = yeoman.Base.extend({
       'Vanilla': {
         'babel-eslint': '^6.1.2',
         'eslint': '^3.5.0',
-        'eslint-loader': '^1.5.0'
+        'eslint-config-standard': '^6.0.1',
+        'eslint-loader': '^1.5.0',
+        'eslint-plugin-promise': '^2.0.1',
+        'eslint-plugin-standard': '^2.0.0'
       },
       'React': {
         'babel-eslint': '^6.1.2',
         'babel-preset-react': '^6.11.1',
         'eslint': '^3.5.0',
+        'eslint-config-standard': '^6.0.1',
+        'eslint-config-standard-jsx': '^3.0.1',
+        'eslint-config-standard-react': '^4.0.2',
         'eslint-loader': '^1.5.0',
+        'eslint-plugin-promise': '^2.0.1',
         'eslint-plugin-react': '^6.3.0',
+        'eslint-plugin-standard': '^2.0.0',
         'react-hot-loader': '^3.0.0-beta.5'
       },
       'TypeScript': {
