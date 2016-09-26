@@ -13,6 +13,8 @@ module.exports = yeoman.Base.extend({
       `Welcome to the ${chalk.yellow('Impero')} generator!`
     ))
 
+    this.log('\n---\nNote that Yeoman will generate the project within the CWD.\n---\n')
+
     const prompts = [{
       type: 'input',
       name: 'name',
