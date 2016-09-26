@@ -81,6 +81,9 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.exampleAnswer
       this.props = answers
 
+      // Pass the project name to a potential parent generator
+      this.options.projectName = this.props.name
+
       if (this.props.browserSupport === 'Legacy (IE9+)') this.props.browserSupport = 'legacy'
       else if (this.props.browserSupport === 'Modern (Chrome, Firefox, Edge, Safari)') this.props.browserSupport = 'modern'
 
@@ -198,12 +201,6 @@ module.exports = yeoman.Base.extend({
         jsLinter: this.props.jsLang.linter
       }
     )
-    this.fs.copyTpl(
-      this.templatePath('deploy'),
-      this.destinationPath('deploy'), {
-        name: this.props.name
-      }
-    )
 
     // Copy untemplated files
     this.fs.copy(
@@ -224,10 +221,6 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(
       this.templatePath('_.gitignore'),
       this.destinationPath('.gitignore')
-    )
-    this.fs.copy(
-      this.templatePath('Dockerfile'),
-      this.destinationPath('Dockerfile')
     )
     if (this.props.jsLang.name === 'TypeScript') this.fs.copy(
       this.templatePath('tslint.json'),
