@@ -19,7 +19,7 @@ yo impero
 This is a generator providing the following options:
 
 - Sass (incl/ SCSS) / Stylus / Sourdough (coming soon)
-- Vanilla JS / TypeScript (coming soon)
+- Vanilla JS / React / TypeScript (coming soon)
 
 ...based upon a foundation of the following:
 
