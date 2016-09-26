@@ -169,7 +169,7 @@ module.exports = yeoman.Base.extend({
       }
     )
     this.fs.copyTpl(
-      this.templatePath('README.md'),
+      this.templatePath('_README.md'),
       this.destinationPath('README.md'), {
         name: this.props.name,
         cssName: this.props.cssLang.name,
