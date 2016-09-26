@@ -11,6 +11,7 @@ html(lang='en')
     block footer
       include components/footer
 
+    //- Load HMR JS & CSS if in dev, else just load bundled JS
     if process.env.NODE_ENV === 'development'
       script(src='/dev-assets/bundle.js')
     else

@@ -1,6 +1,7 @@
 'use strict'
 
 const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'Stylus') { %>
 const rupture = require('rupture')<% } %>
 
@@ -24,6 +25,7 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
+    new ExtractTextPlugin('style.css'),
     // This is until these loaders are updated for the new config system
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -50,13 +52,15 @@ module.exports = {
       },
       {
         test: /\.<%= cssExt %>$/,
-        loaders: [
-          'style',
-          'css',
-          'csso',
-          'postcss',
-          '<%= cssLoader %>'
-        ]
+        loader: ExtractTextPlugin.extract({
+          loader: [
+            'css',
+            'csso',
+            'postcss',
+            '<%= cssLoader %>'
+          ],
+          fallbackLoader: 'style'
+        })
       }
     ]
   }

@@ -13,3 +13,7 @@ link(href='/assets/humans.txt', rel='author', type='text/plain')
 link(href='/assets/img/favicon.ico', rel='shortcut icon')
 
 title= title
+
+//- Load bundled CSS if not in dev
+if process.env.NODE_ENV !== 'development'
+  link(href='/assets/dist/style.css', rel='stylesheet', type='text/css')
