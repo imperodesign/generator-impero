@@ -33,7 +33,6 @@ module.exports = {
       DEVMODE: process.env.NODE_ENV === 'development'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new browsersync(
       // BrowserSync options
       {
