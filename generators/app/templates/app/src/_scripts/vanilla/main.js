@@ -1,7 +1,5 @@
 // Enable HMR
-if (module.hot) {
-  module.hot.accept()
-}
+if (module.hot) module.hot.accept()
 
 // Using Webpack's DefinePlugin we can use global constants such as devMode to have some code (e.g. logging) stay in our codebase but be stripped out during production builds
 if (DEVMODE) console.log('Dev mode active')
@@ -17,7 +15,7 @@ if (!Array.from) {
   }
 }
 if (!String.prototype.includes) {
-  String.prototype.includes = function () {
+  String.prototype.includes = function () { // eslint-disable-line
     'use strict'
     return String.prototype.indexOf.apply(this, arguments) !== -1
   }
