@@ -271,7 +271,7 @@ module.exports = yeoman.Base.extend({
     // Define optional dependencies
     const legacyOptionalDeps = {
       'classlist.js': '^1.1.20150312',
-      'es6-promise': '^3.3.1',
+      'es6-promise': '^4.0.3',
       'matchmedia-polyfill': '^0.3.0',
     }
 
@@ -304,7 +304,7 @@ module.exports = yeoman.Base.extend({
 
     const jsOptionalDevDeps = {
       'Vanilla': {
-        'babel-eslint': '^6.1.2',
+        'babel-eslint': '^7.0.0',
         'eslint': '^3.5.0',
         'eslint-config-standard': '^6.0.1',
         'eslint-loader': '^1.5.0',
@@ -312,7 +312,7 @@ module.exports = yeoman.Base.extend({
         'eslint-plugin-standard': '^2.0.0'
       },
       'React': {
-        'babel-eslint': '^6.1.2',
+        'babel-eslint': '^7.0.0',
         'babel-preset-react': '^6.11.1',
         'eslint': '^3.5.0',
         'eslint-config-standard': '^6.0.1',
