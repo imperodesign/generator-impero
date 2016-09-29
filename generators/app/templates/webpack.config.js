@@ -61,7 +61,11 @@ module.exports = {
           emitError: true,
           emitWarning: true
         },
-        postcss: () => [autoprefixer]<% if (cssLang === 'Stylus') { %>,
+        postcss: () => [
+          autoprefixer({
+            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9', '> 1%']<% } %><% if (browserSupport === 'modern') { %>['last 1 version']<% } %>
+          })
+        ]<% if (cssLang === 'Stylus') { %>,
         stylus: {
           use: [rupture()]
         }<% } %>
@@ -89,7 +93,7 @@ module.exports = {
         test: /\.<%= cssExt %>$/,
         loaders: [
           'style?fixUrls', // This is to fix sourcemaps breaking relative URLs in CSS
-          'css?sourceMap',
+          'css?sourceMap&-autoprefixer', // Disable css-loader's internal autoprefixer
           'postcss',
           '<%= cssLoader %>?sourceMap'
         ]

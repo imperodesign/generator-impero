@@ -32,7 +32,11 @@ module.exports = {
         // Enables this workaround setup to work
         context: __dirname,
         // Actual options
-        postcss: () => [autoprefixer]<% if (cssLang === 'Stylus') { %>,
+        postcss: () => [
+          autoprefixer({
+            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9']<% } %><% if (browserSupport === 'modern') { %>['last 1 version']<% } %>
+          })
+        ]<% if (cssLang === 'Stylus') { %>,
         stylus: {
           use: [rupture()]
         }<% } %>
@@ -54,7 +58,7 @@ module.exports = {
         test: /\.<%= cssExt %>$/,
         loader: ExtractTextPlugin.extract({
           loader: [
-            'css',
+            'css?-autoprefixer', // Disable css-loader's internal autoprefixer
             'csso',
             'postcss',
             '<%= cssLoader %>'

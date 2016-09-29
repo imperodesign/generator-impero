@@ -186,7 +186,8 @@ module.exports = yeoman.Base.extend({
         jsLang: this.props.jsLang.name,
         jsLoader: this.props.jsLang.loader,
         jsExt: this.props.jsLang.fileExt,
-        jsLinter: this.props.jsLang.linter
+        jsLinter: this.props.jsLang.linter,
+        browserSupport: this.props.browserSupport
       }
     )
     this.fs.copyTpl(
@@ -198,7 +199,8 @@ module.exports = yeoman.Base.extend({
         jsLang: this.props.jsLang.name,
         jsLoader: this.props.jsLang.loader,
         jsExt: this.props.jsLang.fileExt,
-        jsLinter: this.props.jsLang.linter
+        jsLinter: this.props.jsLang.linter,
+        browserSupport: this.props.browserSupport
       }
     )
 
