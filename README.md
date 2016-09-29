@@ -1,4 +1,4 @@
-# generator-impero [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-impero [![NPM version][npm-version-image]][npm-version-url] [![NPM Downloads][npm-downloads-image]][npm-downloads-url] [![Dependency Status][daviddm-image]][daviddm-url] [![License][license-image]][license-url]
 
 ## Installation
 
@@ -55,7 +55,11 @@ yo doctor
 
 Failing that, it's also possible that you'll need to open a new terminal window for Yeoman to pick up on the newly installed generator
 
-[npm-image]: https://badge.fury.io/js/generator-impero.svg
-[npm-url]: https://npmjs.org/package/generator-impero
-[daviddm-image]: https://david-dm.org/imperodesign/generator-impero.svg?theme=shields.io
+[npm-version-image]: https://badge.fury.io/js/generator-impero.svg
+[npm-version-url]: https://npmjs.org/package/generator-impero
+[npm-downloads-image]: https://img.shields.io/npm/dm/generator-impero.svg
+[npm-downloads-url]: https://npmjs.org/package/generator-impero
+[license-image]: https://img.shields.io/npm/l/generator-impero.svg
+[license-url]: https://npmjs.org/package/generator-impero
+[daviddm-image]: https://img.shields.io/david/imperodesign/generator-impero.svg
 [daviddm-url]: https://david-dm.org/imperodesign/generator-impero
