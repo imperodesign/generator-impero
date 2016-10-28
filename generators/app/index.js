@@ -226,6 +226,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath('_.gitignore'),
       this.destinationPath('.gitignore')
     )
+    this.fs.copy(
+      this.templatePath('CHANGELOG.md'),
+      this.destinationPath('CHANGELOG.md')
+    )
     if (this.props.jsLang.name === 'TypeScript') this.fs.copy(
       this.templatePath('tslint.json'),
       this.destinationPath('tslint.json')
