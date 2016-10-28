@@ -3,11 +3,7 @@
   "version": "1.0.0-alpha12",
   "description": "Impero's website skeleton generator, courtesy of Yeoman",
   "homepage": "https://github.com/imperodesign/generator-impero",
-  "author": {
-    "name": "Sam A. Horvath-Hunt",
-    "email": "samhh.web@gmail.com",
-    "url": "https://samhh.com"
-  },
+  "author": "Sam A. Horvath-Hunt <samhh.web@gmail.com> (https://samhh.com)",
   "files": [
     "generators"
   ],
@@ -15,12 +11,16 @@
   "keywords": [
     "skeleton",
     "impero",
+    "yeoman",
+    "generator",
+    "es2015",
+    "babel",
     "webpack",
     "hmr",
-    "yeoman-generator",
     "sass",
     "stylus",
-    "babel",
+    "react",
+    "node",
     "express"
   ],
   "dependencies": {
@@ -30,6 +30,7 @@
     "yosay": "^1.2.0"
   },
   "devDependencies": {},
-  "repository": "imperodesign/generator-impero",
+  "repository": "https://github.com/imperodesign/generator-impero",
+  "bugs": "https://github.com/imperodesign/generator-impero/issues",
   "license": "MIT"
 }
