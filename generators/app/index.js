@@ -4,6 +4,7 @@ const yeoman = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
 const extend = require('lodash').merge
+const commandExists = require('command-exists')
 const sortNpmDeps = require('./sortNpmDeps')
 
 module.exports = yeoman.Base.extend({
@@ -359,14 +360,16 @@ module.exports = yeoman.Base.extend({
   },
 
   install () {
+    if (!this.props.installDeps) return
+
     // Install dependencies in scaffolded package.json
-    if (this.props.installDeps) this.installDependencies({
-      bower: false
+    // Use Yarn if available
+    commandExists('yarn', (err, yes) => {
+      if (yes) this.spawnCommand('yarn')
+      else this.installDependencies({ bower: false })
     })
 
-    /* TODO
-    * install 'typings' globally or at least inform the user of their possible need to do so
-
+    /* TODO install 'typings' globally if typescript
     if (this.props.jsLang.name === 'TypeScript') {
       //
     }

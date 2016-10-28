@@ -25,7 +25,7 @@ This is a generator providing the following options:
 
 - Node / Express on the backend
 - Pug templating language
-- npm for package management (frontend & backend)
+- npm for package management (Yarn will be used if available)
 - dotenv for enviromment variables
 - Babel transpilation for ES2017, ES2016 & ES2015 down to ES5 and optionally a few useful polyfills (detailed below)
 
