@@ -2,6 +2,7 @@
 
 const yeoman = require('yeoman-generator')
 const chalk = require('chalk')
+const emoji = require('node-emoji')
 const yosay = require('yosay')
 const extend = require('lodash').merge
 const commandExists = require('command-exists')
@@ -14,7 +15,7 @@ module.exports = yeoman.Base.extend({
       `Welcome to the ${chalk.yellow('Impero')} generator!`
     ))
 
-    this.log('\n---\nNote that Yeoman will generate the project within the CWD.\n---\n')
+    this.log(`\n---\nNote that Yeoman will generate the project within the CWD... ${emoji.get('skull_and_crossbones')}\n---\n`)
 
     const prompts = [{
       type: 'input',
@@ -365,8 +366,16 @@ module.exports = yeoman.Base.extend({
     // Install dependencies in scaffolded package.json
     // Use Yarn if available
     commandExists('yarn', (err, yes) => {
-      if (yes) this.spawnCommand('yarn')
-      else this.installDependencies({ bower: false })
+      if (yes) {
+        this.log(`\n---\nNearly done! All that's left now is to run ${chalk.bgYellow.black('yarn install')}. Here goes... ${emoji.get('v')}\n---\n`)
+        this.spawnCommand('yarn', ['install'])
+      } else {
+        // The installDependencies function built-in to Yeoman does not work
+        // inside this commandExists function:
+        // this.installDependencies({ bower: false })
+        this.log(`\n---\nNearly done! All that's left now is to run ${chalk.bgYellow.black('npm install')}. Here goes... ${emoji.get('v')}\n---\n`)
+        this.spawnCommand('npm', ['install'])
+      }
     })
 
     /* TODO install 'typings' globally if typescript
