@@ -21,7 +21,7 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'name',
       message: `Your project name (must be ${chalk.underline('unique')} and ${chalk.underline('alphanumeric only')})?`,
-      //Defaults to the project's folder name if the input is skipped
+      // Defaults to the project's folder name if the input is skipped
       default: this.appname
     }, {
       type: 'input',
@@ -32,41 +32,32 @@ module.exports = yeoman.Base.extend({
       type: 'list',
       name: 'cssLang',
       message: 'Which CSS preprocessor?',
-      // Sourdough is disabled until a Webpack-compatible loader is developed
-      choices: [/*{
-        name: 'Sourdough / SSS'
-      }, */{
-        name: 'Sass'
-      }, {
-        name: 'Sass (SCSS)'
-      }, {
-        name: 'Stylus'
-      }],
-      default: 0
+      choices: [
+        {name: chalk.gray('Sourdough / SSS'), value: 'sourdough', disabled: 'Requires a Webpack-compatible loader to be developed.'},
+        {name: 'Sass', value: 'sass'},
+        {name: 'Sass (SCSS)', value: 'scss'},
+        {name: 'Stylus', value: 'stylus'}
+      ],
+      default: 'sass'
     }, {
       type: 'list',
       name: 'jsLang',
-      message: 'Which JS feature set? (all include ES2015 / Babel)',
-      // TypeScript is disabled until the loader's compatibility with Node 6.x is fixed
-      // Further development will likely be required after that point
-      choices: [{
-        name: 'Vanilla'
-      }, {
-        name: 'React'
-      }/*, {
-        name: 'TypeScript'
-      }*/],
-      default: 0
+      message: 'Which JS feature set? (all include ES2015+ w/ Babel transpilation)',
+      choices: [
+        {name: 'Vanilla', value: 'vanilla'},
+        {name: 'React', value: 'react'},
+        {name: chalk.gray('TypeScript'), value: 'typescript', disabled: 'Dev work required. Coming soon!'}
+      ],
+      default: 'vanilla'
     }, {
       type: 'list',
       name: 'browserSupport',
       message: 'Browser support?',
-      choices: [{
-        name: 'Legacy (IE9+)',
-      }, {
-        name: 'Modern (Chrome, Firefox, Edge, Safari)'
-      }],
-      default: 0
+      choices: [
+        {name: 'Legacy (IE9+)', value: 'legacy'},
+        {name: 'Modern (Chrome, Firefox, Edge, Safari)', value: 'modern'}
+      ],
+      default: 'legacy'
     }, {
       type: 'confirm',
       name: 'copyEnv',
@@ -86,9 +77,6 @@ module.exports = yeoman.Base.extend({
       // Pass the project name to a potential parent generator
       this.options.projectName = this.props.name
 
-      if (this.props.browserSupport === 'Legacy (IE9+)') this.props.browserSupport = 'legacy'
-      else if (this.props.browserSupport === 'Modern (Chrome, Firefox, Edge, Safari)') this.props.browserSupport = 'modern'
-
       // Make object of CSS choice details
       this.props.cssLang = {
         name: this.props.cssLang
@@ -97,22 +85,22 @@ module.exports = yeoman.Base.extend({
       // Add additional details for each option
       // Better than making a load of additional files to copy instead
       switch (this.props.cssLang.name) {
-        case 'Sourdough / SSS':
+        case 'sourdough':
           this.props.cssLang.templateDir = 'sourdough'
-          this.props.cssLang.loader = 'TODO'
+          this.props.cssLang.loader = 'sourdough'
           this.props.cssLang.fileExt = 'sss'
           break
-        case 'Sass':
+        case 'sass':
           this.props.cssLang.templateDir = 'sass'
           this.props.cssLang.loader = 'sass'
           this.props.cssLang.fileExt = 'sass'
           break
-        case 'Sass (SCSS)':
+        case 'scss':
           this.props.cssLang.templateDir = 'scss'
           this.props.cssLang.loader = 'sass'
           this.props.cssLang.fileExt = 'scss'
           break
-        case 'Stylus':
+        case 'stylus':
           this.props.cssLang.templateDir = 'stylus'
           this.props.cssLang.loader = 'stylus'
           this.props.cssLang.fileExt = 'styl'
@@ -128,19 +116,19 @@ module.exports = yeoman.Base.extend({
       }
 
       switch (this.props.jsLang.name) {
-        case 'Vanilla':
+        case 'vanilla':
           this.props.jsLang.templateDir = 'vanilla'
           this.props.jsLang.loader = 'babel'
           this.props.jsLang.fileExt = 'js',
           this.props.jsLang.linter = 'eslint'
           break
-        case 'React':
+        case 'react':
           this.props.jsLang.templateDir = 'react'
           this.props.jsLang.loader = 'babel'
           this.props.jsLang.fileExt = 'js',
           this.props.jsLang.linter = 'eslint'
           break
-        case 'TypeScript':
+        case 'typescript':
           this.props.jsLang.templateDir = 'typescript'
           this.props.jsLang.loader = 'babel!ts?sourceMap'
           this.props.jsLang.fileExt = 'ts',
@@ -165,17 +153,13 @@ module.exports = yeoman.Base.extend({
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
         name: this.props.name,
-        description: this.props.description,
-        cssLang: this.props.cssLang.name,
-        cssLoader: this.props.cssLang.loader
+        description: this.props.description
       }
     )
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'), {
         name: this.props.name,
-        cssName: this.props.cssLang.name,
-        jsName: this.props.jsLang.name,
         browserSupport: this.props.browserSupport
       }
     )
@@ -284,17 +268,18 @@ module.exports = yeoman.Base.extend({
     }
 
     const cssOptionalDevDeps = {
-      'Sass': {
+      'sourdough': {},
+      'sass': {
         'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.9.3',
         'sass-loader': '^4.0.2'
       },
-      'Sass (SCSS)': {
+      'scss': {
         'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.10.0',
         'sass-loader': '^4.0.2'
       },
-      'Stylus': {
+      'stylus': {
         'rupture': '^0.6.1',
         'stylus': '^0.54.5',
         'stylus-loader': '^2.3.1'
@@ -302,16 +287,16 @@ module.exports = yeoman.Base.extend({
     }
 
     const jsOptionalDeps = {
-      'Vanilla': {},
-      'React': {
+      'vanilla': {},
+      'react': {
         'react': '^15.3.2',
         'react-dom': '^15.3.2'
       },
-      'TypeScript': {}
+      'typescript': {}
     }
 
     const jsOptionalDevDeps = {
-      'Vanilla': {
+      'vanilla': {
         'babel-eslint': '^7.0.0',
         'eslint': '^3.5.0',
         'eslint-config-standard': '^6.0.1',
@@ -319,7 +304,7 @@ module.exports = yeoman.Base.extend({
         'eslint-plugin-promise': '^2.0.1',
         'eslint-plugin-standard': '^2.0.0'
       },
-      'React': {
+      'react': {
         'babel-eslint': '^7.0.0',
         'babel-preset-react': '^6.11.1',
         'eslint': '^3.5.0',
@@ -332,7 +317,7 @@ module.exports = yeoman.Base.extend({
         'eslint-plugin-standard': '^2.0.0',
         'react-hot-loader': '^3.0.0-beta.5'
       },
-      'TypeScript': {
+      'typescript': {
         'ts-loader': '^0.8.2',
         'tslint': '^3.15.1',
         'tslint-loader': '^2.1.5',
@@ -382,10 +367,6 @@ module.exports = yeoman.Base.extend({
       }
     })
 
-    /* TODO install 'typings' globally if typescript
-    if (this.props.jsLang.name === 'TypeScript') {
-      //
-    }
-    */
+    // if (this.props.jsLang.name === 'typescript') // TODO install 'typings' globally if typescript option selected
   }
 })

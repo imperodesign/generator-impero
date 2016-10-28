@@ -1,8 +1,10 @@
 <img src="https://media.giphy.com/media/3o6gEaLDVsHUcmyTZe/giphy-tumblr.gif">
 
+Built to your liking with the Impero generator
+
 # <%= name %>
 
-Built to your liking with the Impero generator with the following features: <%= cssName %><% if (jsName !== 'Vanilla') { %>, <%= jsName %><% } %>
+<%- description %>
 
 <% if (browserSupport === 'legacy') { %>Browser support is IE9+<% } %><% if (browserSupport === 'modern') { %>Browser support is modern browsers only (Chrome, Firefox, Edge, Safari)<% } %>
 

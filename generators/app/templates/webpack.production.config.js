@@ -2,7 +2,7 @@
 
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')<% if (cssLang === 'Stylus') { %>
+const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
@@ -36,7 +36,7 @@ module.exports = {
           autoprefixer({
             browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9']<% } %><% if (browserSupport === 'modern') { %>['last 1 version']<% } %>
           })
-        ]<% if (cssLang === 'Stylus') { %>,
+        ]<% if (cssLang === 'stylus') { %>,
         stylus: {
           use: [rupture()]
         }<% } %>
@@ -48,9 +48,9 @@ module.exports = {
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
-        query: {<% if (jsLang === 'React') { %>
+        query: {<% if (jsLang === 'react') { %>
           plugins: ['react-hot-loader/babel'],<% } %>
-          presets: ['es2015', 'es2016', 'es2017', 'stage-1'<% if (jsLang === 'React') { %>, 'react'<% } %>]
+          presets: ['es2015', 'es2016', 'es2017', 'stage-1'<% if (jsLang === 'react') { %>, 'react'<% } %>]
         },
         exclude: /node_modules/
       },
