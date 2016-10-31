@@ -19,7 +19,7 @@ module.exports = yeoman.Base.extend({
 
     const prompts = [{
       type: 'input',
-      name: 'name',
+      name: 'projectName',
       message: `Your project name (must be ${chalk.underline('unique')} and ${chalk.underline('alphanumeric only')})?`,
       // Defaults to the project's folder name if the input is skipped
       default: this.appname
@@ -33,22 +33,83 @@ module.exports = yeoman.Base.extend({
       name: 'cssLang',
       message: 'Which CSS preprocessor?',
       choices: [
-        {name: chalk.gray('Sourdough / SSS'), value: 'sourdough', disabled: 'Requires a Webpack-compatible loader to be developed.'},
-        {name: 'Sass', value: 'sass'},
-        {name: 'Sass (SCSS)', value: 'scss'},
-        {name: 'Stylus', value: 'stylus'}
+        {
+          name: chalk.gray('Sourdough / SSS'),
+          disabled: 'Requires a Webpack-compatible loader to be developed.',
+          value: {
+            name: 'Sourdough',
+            templateDir: 'sourdough',
+            loader: 'sourdough',
+            fileExt: 'sss'
+          }
+        },
+        {
+          name: 'Sass',
+          value: {
+            name: 'sass',
+            templateDir: 'sass',
+            loader: 'sass',
+            fileExt: 'sass'
+          }
+        },
+        {
+          name: 'Sass (SCSS)',
+          value: {
+            name: 'scss',
+            templateDir: 'scss',
+            loader: 'sass',
+            fileExt: 'scss'
+          }
+        },
+        {
+          name: 'Stylus',
+          value: {
+            name: 'stylus',
+            templateDir: 'stylus',
+            loader: 'stylus',
+            fileExt: 'styl'
+          }
+        }
       ],
-      default: 'sass'
+      default: 0
     }, {
       type: 'list',
       name: 'jsLang',
       message: 'Which JS feature set? (all include ES2015+ w/ Babel transpilation)',
       choices: [
-        {name: 'Vanilla', value: 'vanilla'},
-        {name: 'React', value: 'react'},
-        {name: chalk.gray('TypeScript'), value: 'typescript', disabled: 'Dev work required. Coming soon!'}
+        {
+          name: 'Vanilla',
+          value: {
+            name: 'vanilla',
+            templateDir: 'vanilla',
+            loader: 'babel',
+            fileExt: 'js',
+            linter: 'eslint'
+          }
+        },
+        {
+          name: 'React',
+          value: {
+            name: 'react',
+            templateDir: 'react',
+            loader: 'babel',
+            fileExt: 'js',
+            linter: 'eslint'
+          }
+        },
+        {
+          name: chalk.gray('TypeScript'),
+          disabled: 'Dev work required. Coming soon!',
+          value: {
+            name: 'typescript',
+            templateDir: 'typescript',
+            loader: 'babel!ts?sourceMap',
+            fileExt: 'ts',
+            linter: 'tslint'
+          }
+        }
       ],
-      default: 'vanilla'
+      default: 0
     }, {
       type: 'list',
       name: 'browserSupport',
@@ -75,69 +136,7 @@ module.exports = yeoman.Base.extend({
       this.props = answers
 
       // Pass the project name to a potential parent generator
-      this.options.projectName = this.props.name
-
-      // Make object of CSS choice details
-      this.props.cssLang = {
-        name: this.props.cssLang
-      }
-
-      // Add additional details for each option
-      // Better than making a load of additional files to copy instead
-      switch (this.props.cssLang.name) {
-        case 'sourdough':
-          this.props.cssLang.templateDir = 'sourdough'
-          this.props.cssLang.loader = 'sourdough'
-          this.props.cssLang.fileExt = 'sss'
-          break
-        case 'sass':
-          this.props.cssLang.templateDir = 'sass'
-          this.props.cssLang.loader = 'sass'
-          this.props.cssLang.fileExt = 'sass'
-          break
-        case 'scss':
-          this.props.cssLang.templateDir = 'scss'
-          this.props.cssLang.loader = 'sass'
-          this.props.cssLang.fileExt = 'scss'
-          break
-        case 'stylus':
-          this.props.cssLang.templateDir = 'stylus'
-          this.props.cssLang.loader = 'stylus'
-          this.props.cssLang.fileExt = 'styl'
-          break
-        // This should never happen
-        default:
-          break
-      }
-
-      // And do the same for JS
-      this.props.jsLang = {
-        name: this.props.jsLang
-      }
-
-      switch (this.props.jsLang.name) {
-        case 'vanilla':
-          this.props.jsLang.templateDir = 'vanilla'
-          this.props.jsLang.loader = 'babel'
-          this.props.jsLang.fileExt = 'js',
-          this.props.jsLang.linter = 'eslint'
-          break
-        case 'react':
-          this.props.jsLang.templateDir = 'react'
-          this.props.jsLang.loader = 'babel'
-          this.props.jsLang.fileExt = 'js',
-          this.props.jsLang.linter = 'eslint'
-          break
-        case 'typescript':
-          this.props.jsLang.templateDir = 'typescript'
-          this.props.jsLang.loader = 'babel!ts?sourceMap'
-          this.props.jsLang.fileExt = 'ts',
-          this.props.jsLang.linter = 'tslint'
-          break
-        // This should never happen
-        default:
-          break
-      }
+      this.options.projectName = this.props.projectName
     })
   },
 
@@ -152,14 +151,15 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
-        name: this.props.name,
+        name: this.props.projectName,
         description: this.props.description
       }
     )
     this.fs.copyTpl(
       this.templatePath('_README.md'),
       this.destinationPath('README.md'), {
-        name: this.props.name,
+        name: this.props.projectName,
+        description: this.props.description,
         browserSupport: this.props.browserSupport
       }
     )
@@ -199,7 +199,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('.env.example'),
       this.destinationPath('.env')
     )
-    if (this.props.jsLang.name !== 'TypeScript') this.fs.copyTpl(
+    if (this.props.jsLang.name !== 'typescript') this.fs.copyTpl(
       this.templatePath('.eslintrc'),
       this.destinationPath('.eslintrc'), {
         jsLang: this.props.jsLang.name
@@ -214,7 +214,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('CHANGELOG.md'),
       this.destinationPath('CHANGELOG.md')
     )
-    if (this.props.jsLang.name === 'TypeScript') this.fs.copy(
+    if (this.props.jsLang.name === 'typescript') this.fs.copy(
       this.templatePath('tslint.json'),
       this.destinationPath('tslint.json')
     )

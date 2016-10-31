@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard"<% if (jsLang === 'React') { %>, "standard-react"<% } %>],
+  "extends": ["standard"<% if (jsLang === 'react') { %>, "standard-react"<% } %>],
   "env": {
     "browser": true,
     "es6": true
@@ -10,7 +10,7 @@
   },
   "globals": {
     "DEVMODE": false
-  }<% if (jsLang === 'React') { %>,
+  }<% if (jsLang === 'react') { %>,
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
   }<% } %>
