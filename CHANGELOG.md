@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 ### Added
 - Changelog.
 - Yarn support to both generator and generated projects.
+- Validation for project name (against npm) and prevent double quotes from breaking description field in `package.json`.
 
 ### Changed
 - Make autoprefixer respect modern/legacy setting choice.
