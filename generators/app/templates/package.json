@@ -29,7 +29,6 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "nodemon": "^1.10.2",
     "postcss-loader": "^0.13.0",
-    "run-sequence": "^1.2.2",
     "style-loader": "github:bendytree/style-loader",
     "webpack": "2.1.0-beta.25",
     "webpack-dev-middleware": "^1.8.1",
