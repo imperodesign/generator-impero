@@ -1,7 +1,7 @@
 {
   "name": "<%= name %>",
   "version": "1.0.0",
-  "description": "<%- description %>",
+  "description": "<%- description.replace('"', '') %>",
   "main": "app/index.js",
   "scripts": {
     "start": "node app/index",

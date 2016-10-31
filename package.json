@@ -28,6 +28,7 @@
     "command-exists": "^1.0.2",
     "lodash": "^4.16.2",
     "node-emoji": "^1.4.1",
+    "validate-npm-package-name": "^2.2.2",
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
   },

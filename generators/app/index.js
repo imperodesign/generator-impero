@@ -6,6 +6,7 @@ const emoji = require('node-emoji')
 const yosay = require('yosay')
 const extend = require('lodash').merge
 const commandExists = require('command-exists')
+const validateNpmName = require('validate-npm-package-name')
 const sortNpmDeps = require('./sortNpmDeps')
 
 module.exports = yeoman.Base.extend({
@@ -22,7 +23,8 @@ module.exports = yeoman.Base.extend({
       name: 'projectName',
       message: `Your project name (must be ${chalk.underline('unique')} and ${chalk.underline('alphanumeric only')})?`,
       // Defaults to the project's folder name if the input is skipped
-      default: this.appname
+      default: this.appname,
+      validate: input => validateNpmName(input).validForNewPackages
     }, {
       type: 'input',
       name: 'description',
