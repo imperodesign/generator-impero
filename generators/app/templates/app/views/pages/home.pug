@@ -1,15 +1,13 @@
 extends ../layout
 
 block content
-  main.home main block on homepage
-  br
-  hr
-  br
-  form(class='js-example-trigger', style='color: #999')
-    label(for='example') Type something here to prove state isn't lost
+  main.page-home: .width-limiter
+    h1 Built to your liking with the Impero generator
     br
-    input(type='text', name='example')
-    h4
-      | Counter:&nbsp;
-      span(class='js-example') 0
-    button(type='submit') Click me for magic
+    form(class='js-example-trigger')
+      div
+        label(for='example') What do you think of this generator?
+        input(type='text', name='example')
+      div
+        button(type='submit') How awesome are you?
+        span(class='js-example') 0

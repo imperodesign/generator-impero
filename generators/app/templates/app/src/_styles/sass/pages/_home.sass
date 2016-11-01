@@ -1,5 +1,13 @@
-.home
-  color: orange
+.page-home
+  text-align: center
 
-  @include breakpoint ($tablet)
-  	color: cyan
+  input
+    display: block
+    margin: 5px auto 20px
+
+    @include breakpoint ($tablet)
+      display: inline-block
+      margin: 0 0 20px 5px
+
+  button
+    margin: 0 5px 0 0
