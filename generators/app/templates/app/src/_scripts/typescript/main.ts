@@ -33,6 +33,6 @@ if (exampleEl && exampleTriggerEl) {
   exampleTriggerEl.addEventListener('submit', event => {
     event.preventDefault()
 
-    require.ensure([], require => require('./modules/example-require-ensure').default(exampleEl))
+    System.import('./modules/example-require-ensure').then(func => func.default(exampleEl))
   })
 }

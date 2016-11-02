@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 ### Changed
 - Make autoprefixer respect modern/legacy setting choice.
 - Fix some issues with ESLint.
+- Use Webpack's newer System.import() syntax for dynamic imports.
 - Improved default/generated page.
 - Make the Nodemon/Webpack bundle bug less likely to occur.
 - Update deps.
