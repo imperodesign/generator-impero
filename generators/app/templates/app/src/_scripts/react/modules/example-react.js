@@ -10,5 +10,5 @@ class App extends Component {
 }
 
 export default function () {
-  ReactDOM.render(<App />, document.querySelector('.home'))
+  ReactDOM.render(<App />, document.querySelector('.page-home'))
 }
