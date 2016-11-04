@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 - Validation for project name (against npm) and prevent double quotes from breaking description field in `package.json`.
 
 ### Changed
+- Stop transpiling non-standardised/finalised code (es2017 & stage 1).
 - Make autoprefixer respect modern/legacy setting choice.
 - Fix some issues with ESLint.
 - Use Webpack's newer System.import() syntax for dynamic imports.
