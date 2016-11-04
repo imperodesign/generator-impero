@@ -5,12 +5,14 @@
     "browser": true,
     "es6": true
   },
-  "ecmaFeatures": {
-    "modules": true
-  },
+  "ecmaVersion": 2015,
+  "sourceType": "module",
   "globals": {
     "DEVMODE": false
   }<% if (jsLang === 'react') { %>,
+  "ecmaFeatures": {
+    "jsx": true
+  },
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
   }<% } %>
