@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 - Changelog.
 - Yarn support to both generator and generated projects.
 - Validation for project name (against npm) and prevent double quotes from breaking description field in `package.json`.
+- ESLint plugin for linting ES2015+ import/export syntax.
 
 ### Changed
 - Stop transpiling non-standardised/finalised code (es2017 & stage 1).

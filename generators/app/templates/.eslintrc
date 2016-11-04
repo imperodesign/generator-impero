@@ -1,12 +1,15 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard"<% if (jsLang === 'react') { %>, "standard-react"<% } %>],
+  "extends": ["standard",<% if (jsLang === 'react') { %>, "standard-react",<% } %> "plugin:import/errors", "plugin:import/warnings"],
   "env": {
     "browser": true,
     "es6": true
   },
   "ecmaVersion": 2015,
   "sourceType": "module",
+  "settings": {
+    "import/resolver": "eslint-import-resolver-webpack"
+  },
   "globals": {
     "DEVMODE": false
   }<% if (jsLang === 'react') { %>,
