@@ -273,12 +273,12 @@ module.exports = yeoman.Base.extend({
       'sourdough': {},
       'sass': {
         'breakpoint-sass': '^2.7.0',
-        'node-sass': '^3.9.3',
+        'node-sass': '^3.11.2',
         'sass-loader': '^4.0.2'
       },
       'scss': {
         'breakpoint-sass': '^2.7.0',
-        'node-sass': '^3.10.0',
+        'node-sass': '^3.11.2',
         'sass-loader': '^4.0.2'
       },
       'stylus': {
@@ -299,29 +299,29 @@ module.exports = yeoman.Base.extend({
 
     const jsOptionalDevDeps = {
       'vanilla': {
-        'babel-eslint': '^7.0.0',
-        'eslint': '^3.5.0',
-        'eslint-config-standard': '^6.0.1',
+        'babel-eslint': '^7.1.0',
+        'eslint': '^3.9.1',
+        'eslint-config-standard': '^6.2.1',
         'eslint-import-resolver-webpack': '^0.7.0',
-        'eslint-loader': '^1.5.0',
-        'eslint-plugin-import': '^2.1.0',
-        'eslint-plugin-promise': '^2.0.1',
-        'eslint-plugin-standard': '^2.0.0'
+        'eslint-loader': '^1.6.1',
+        'eslint-plugin-import': '^2.2.0',
+        'eslint-plugin-promise': '^3.3.1',
+        'eslint-plugin-standard': '^2.0.1'
       },
       'react': {
-        'babel-eslint': '^7.0.0',
-        'babel-preset-react': '^6.11.1',
-        'eslint': '^3.5.0',
-        'eslint-config-standard': '^6.0.1',
-        'eslint-config-standard-jsx': '^3.0.1',
-        'eslint-config-standard-react': '^4.0.2',
+        'babel-eslint': '^7.1.0',
+        'babel-preset-react': '^6.16.0',
+        'eslint': '^3.9.1',
+        'eslint-config-standard': '^6.2.1',
+        'eslint-config-standard-jsx': '^3.2.0',
+        'eslint-config-standard-react': '^4.2.0',
         'eslint-import-resolver-webpack': '^0.7.0',
-        'eslint-loader': '^1.5.0',
-        'eslint-plugin-import': '^2.1.0',
-        'eslint-plugin-promise': '^2.0.1',
-        'eslint-plugin-react': '^6.3.0',
-        'eslint-plugin-standard': '^2.0.0',
-        'react-hot-loader': '^3.0.0-beta.5'
+        'eslint-loader': '^1.6.1',
+        'eslint-plugin-import': '^2.2.0',
+        'eslint-plugin-promise': '^3.3.1',
+        'eslint-plugin-react': '^6.6.0',
+        'eslint-plugin-standard': '^2.0.1',
+        'react-hot-loader': '^3.0.0-beta.6'
       },
       'typescript': {
         'ts-loader': '^0.8.2',
