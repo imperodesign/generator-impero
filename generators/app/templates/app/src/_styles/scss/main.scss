@@ -8,7 +8,7 @@
 @import 'base/typography';
 @import 'base/skeleton';
 
-@import 'components/nav';
+<% if (jsLang !== 'vue') { %>@import 'components/nav';
 @import 'components/footer';
-
+<% } %>
 @import 'pages/home';

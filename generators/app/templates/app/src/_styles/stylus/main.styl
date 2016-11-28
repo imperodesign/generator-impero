@@ -7,7 +7,7 @@
 @require 'base/typography'
 @require 'base/skeleton'
 
-@require 'components/nav'
+<% if (jsLang !== 'vue') { %>@require 'components/nav'
 @require 'components/footer'
-
+<% } %>
 @require 'pages/home'

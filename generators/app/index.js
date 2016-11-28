@@ -266,10 +266,33 @@ module.exports = yeoman.Base.extend({
     )
 
     // Copy CSS
-    this.fs.copy(
-      this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}`),
-      this.props.jsLang.name === 'vue' ? this.destinationPath('app/src/global-styles') : this.destinationPath('app/src/styles')
-    )
+    if (this.props.jsLang.name === 'vue') {
+      this.fs.copy(
+        this.templa tePath(`app/src/_styles/${this.props.cssLang.templateDir}/base`),
+        this.destinationPath('app/src/global-styles/base')
+      )
+      this.fs.copyTpl(
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/main.${this.props.cssLang.fileExt}`),
+        this.destinationPath(`app/src/global-styles/main.${this.props.cssLang.fileExt}`), {
+          cssLang: this.props.cssLang.name
+        }
+      )
+    } else {
+      this.fs.copy(
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/base`),
+        this.destinationPath('app/src/styles/base')
+      )
+      this.fs.copy(
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/components`),
+        this.destinationPath('app/src/styles/components')
+      )
+      this.fs.copyTpl(
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/main.${this.props.cssLang.fileExt}`),
+        this.destinationPath(`app/src/styles/main.${this.props.cssLang.fileExt}`), {
+          cssLang: this.props.cssLang.name
+        }
+      )
+    }
 
     // Copy JS
     this.fs.copyTpl(
