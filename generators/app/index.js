@@ -41,7 +41,7 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'Sourdough',
             templateDir: 'sourdough',
-            loader: 'sourdough',
+            loader: 'sourdough-loader',
             fileExt: 'sss'
           }
         },
@@ -50,7 +50,7 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'sass',
             templateDir: 'sass',
-            loader: 'sass',
+            loader: 'sass-loader',
             fileExt: 'sass'
           }
         },
@@ -59,7 +59,7 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'scss',
             templateDir: 'scss',
-            loader: 'sass',
+            loader: 'sass-loader',
             fileExt: 'scss'
           }
         },
@@ -68,7 +68,7 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'stylus',
             templateDir: 'stylus',
-            loader: 'stylus',
+            loader: 'stylus-loader',
             fileExt: 'styl'
           }
         }
@@ -84,9 +84,9 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'vanilla',
             templateDir: 'vanilla',
-            loader: 'babel',
+            loader: 'babel-loader',
             fileExt: 'js',
-            linter: 'eslint'
+            linter: 'eslint-loader'
           }
         },
         {
@@ -94,9 +94,9 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'react',
             templateDir: 'react',
-            loader: 'babel',
+            loader: 'babel-loader',
             fileExt: 'js',
-            linter: 'eslint'
+            linter: 'eslint-loader'
           }
         },
         {
@@ -105,9 +105,9 @@ module.exports = yeoman.Base.extend({
           value: {
             name: 'typescript',
             templateDir: 'typescript',
-            loader: 'babel!ts?sourceMap',
+            loader: 'babel-loader!ts-loader?sourceMap',
             fileExt: 'ts',
-            linter: 'tslint'
+            linter: 'tslint-loader'
           }
         }
       ],
@@ -144,6 +144,12 @@ module.exports = yeoman.Base.extend({
 
   writing () {
     // Copy templated files
+    this.fs.copyTpl(
+      this.templatePath('.babelrc'),
+      this.destinationPath('.babelrc'), {
+        jsLang: this.props.jsLang.name
+      }
+    )
     this.fs.copyTpl(
       this.templatePath('.editorconfig'),
       this.destinationPath('.editorconfig'), {

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-alpha16] - 2016-11-28
+### Changed
+- Update Webpack to latest version.
+- Fix another regression.
+
+## [1.0.0-alpha15] - 2016-11-28
+### Changed
+- Fix various critical regressions.
+
 ## [1.0.0-alpha13] - 2016-11-28
 ### Added
 - Changelog.

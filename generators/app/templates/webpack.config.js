@@ -88,9 +88,9 @@ module.exports = {
       {
         test: /\.<%= cssExt %>$/,
         loaders: [
-          'style?fixUrls', // This is to fix sourcemaps breaking relative URLs in CSS
-          'css?sourceMap&-autoprefixer', // Disable css-loader's internal autoprefixer
-          'postcss',
+          'style-loader?fixUrls', // This is to fix sourcemaps breaking relative URLs in CSS
+          'css-loader?sourceMap&-autoprefixer', // Disable css-loader's internal autoprefixer
+          'postcss-loader',
           '<%= cssLoader %>?sourceMap'
         ]
       }

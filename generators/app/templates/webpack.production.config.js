@@ -22,7 +22,6 @@ module.exports = {
     new webpack.DefinePlugin({
       DEVMODE: process.env.NODE_ENV === 'development'
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new ExtractTextPlugin('style.css'),
@@ -54,12 +53,12 @@ module.exports = {
         test: /\.<%= cssExt %>$/,
         loader: ExtractTextPlugin.extract({
           loader: [
-            'css?-autoprefixer', // Disable css-loader's internal autoprefixer
-            'csso',
-            'postcss',
+            'css-loader?-autoprefixer', // Disable css-loader's internal autoprefixer
+            'csso-loader',
+            'postcss-loader',
             '<%= cssLoader %>'
           ],
-          fallbackLoader: 'style'
+          fallbackLoader: 'style-loader'
         })
       }
     ]
