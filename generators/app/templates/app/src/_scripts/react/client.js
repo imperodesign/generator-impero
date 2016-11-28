@@ -5,7 +5,7 @@ if (module.hot) module.hot.accept()
 if (DEVMODE) console.log('Dev mode active')
 
 // Webpack entrypoint for styles
-import './styles/main'
+import './styles/index'
 <% if (browserSupport === 'legacy') { %>
 // Polyfills
 if (!Array.from) {

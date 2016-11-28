@@ -10,5 +10,5 @@
 
 <% if (jsLang !== 'vue') { %>@import 'components/nav';
 @import 'components/footer';
-<% } %>
-@import 'pages/home';
+
+@import 'pages/home';<% } %>

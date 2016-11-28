@@ -21,13 +21,42 @@
   }
 </script>
 
-<style lang="stylus" scoped>
-  // Go ahead and update the above lang and the below code with your CSS
-  // preprocessor of choice
+<style lang="<%= cssLoader.replace('-loader', '') %>" scoped>
+  <% if (cssLang === 'scss') { %>.button {
+    display: inline-block;
+    position: relative;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    background: #282828;
+    color: white;
+    user-select: none;
+    cursor: pointer;
+    transition: transform .3s;
 
-  @require '../global-styles/base/vars'
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: -100%;
+      background: black;
+      transition: left .3s;
+    }
 
-  .button
+    &:hover::after {
+      left: 0;
+    }
+  }
+
+  .text {
+    position: relative;
+    z-index: 1;
+  }<% } else { %>.button
     display: inline-block
     position: relative
     padding: 8px 16px
@@ -57,5 +86,5 @@
 
   .text
     position: relative
-    z-index: 1
+    z-index: 1<% } %>
 </style>

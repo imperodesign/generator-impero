@@ -268,13 +268,13 @@ module.exports = yeoman.Base.extend({
     // Copy CSS
     if (this.props.jsLang.name === 'vue') {
       this.fs.copy(
-        this.templa tePath(`app/src/_styles/${this.props.cssLang.templateDir}/base`),
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/base`),
         this.destinationPath('app/src/global-styles/base')
       )
       this.fs.copyTpl(
-        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/main.${this.props.cssLang.fileExt}`),
-        this.destinationPath(`app/src/global-styles/main.${this.props.cssLang.fileExt}`), {
-          cssLang: this.props.cssLang.name
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/index.${this.props.cssLang.fileExt}`),
+        this.destinationPath(`app/src/global-styles/index.${this.props.cssLang.fileExt}`), {
+          jsLang: this.props.jsLang.name
         }
       )
     } else {
@@ -286,10 +286,14 @@ module.exports = yeoman.Base.extend({
         this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/components`),
         this.destinationPath('app/src/styles/components')
       )
+      this.fs.copy(
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/pages`),
+        this.destinationPath('app/src/styles/pages')
+      )
       this.fs.copyTpl(
-        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/main.${this.props.cssLang.fileExt}`),
-        this.destinationPath(`app/src/styles/main.${this.props.cssLang.fileExt}`), {
-          cssLang: this.props.cssLang.name
+        this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}/index.${this.props.cssLang.fileExt}`),
+        this.destinationPath(`app/src/styles/index.${this.props.cssLang.fileExt}`), {
+          jsLang: this.props.jsLang.name
         }
       )
     }
@@ -310,9 +314,39 @@ module.exports = yeoman.Base.extend({
         this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/Base.vue`),
         this.destinationPath(`app/src/Base.vue`)
       )
+      this.fs.copyTpl(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/Button.vue`),
+        this.destinationPath('app/src/components/Button.vue'), {
+          cssLang: this.props.cssLang.name,
+          cssLoader: this.props.cssLang.loader
+        }
+      )
+      this.fs.copyTpl(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/404.vue`),
+        this.destinationPath('app/src/components/pages/404.vue'), {
+          cssLang: this.props.cssLang.name,
+          cssLoader: this.props.cssLang.loader
+        }
+      )
+      this.fs.copyTpl(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/Home.vue`),
+        this.destinationPath('app/src/components/pages/Home.vue'), {
+          cssLang: this.props.cssLang.name,
+          cssLoader: this.props.cssLang.loader,
+          cssExt: this.props.cssLang.fileExt
+        }
+      )
       this.fs.copy(
-        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components`),
-        this.destinationPath('app/src/components')
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/home/home.js`),
+        this.destinationPath('app/src/components/pages/home/home.js')
+      )
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/home/home.pug`),
+        this.destinationPath('app/src/components/pages/home/home.pug')
+      )
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/home/home.${this.props.cssLang.fileExt}`),
+        this.destinationPath(`app/src/components/pages/home/home.${this.props.cssLang.fileExt}`)
       )
       this.fs.copy(
         this.templatePath('app/src/_scripts/_vue-locales'),
@@ -371,6 +405,8 @@ module.exports = yeoman.Base.extend({
     const jsOptionalDevDeps = {
       'vanilla': {
         'babel-eslint': '^7.1.0',
+        'browser-sync': '^2.17.5',
+        'browser-sync-webpack-plugin': '^1.1.3',
         'eslint': '^3.9.1',
         'eslint-config-standard': '^6.2.1',
         'eslint-import-resolver-webpack': '^0.7.0',
@@ -395,6 +431,8 @@ module.exports = yeoman.Base.extend({
       'react': {
         'babel-eslint': '^7.1.0',
         'babel-preset-react': '^6.16.0',
+        'browser-sync': '^2.17.5',
+        'browser-sync-webpack-plugin': '^1.1.3',
         'eslint': '^3.9.1',
         'eslint-config-standard': '^6.2.1',
         'eslint-config-standard-jsx': '^3.2.0',
@@ -408,6 +446,8 @@ module.exports = yeoman.Base.extend({
         'react-hot-loader': '^3.0.0-beta.6'
       },
       'typescript': {
+        'browser-sync': '^2.17.5',
+        'browser-sync-webpack-plugin': '^1.1.3',
         'ts-loader': '^0.8.2',
         'tslint': '^3.15.1',
         'tslint-loader': '^2.1.5',

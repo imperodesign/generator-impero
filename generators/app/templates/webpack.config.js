@@ -1,8 +1,8 @@
 'use strict'
 
 const fs = require('fs')
-const webpack = require('webpack')
-const browsersync = require('browser-sync-webpack-plugin')
+const webpack = require('webpack')<% if (jsLang !== 'vue') { %>
+const browsersync = require('browser-sync-webpack-plugin')<% } %>
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
 
@@ -32,7 +32,7 @@ module.exports = {
     new webpack.DefinePlugin({
       DEVMODE: process.env.NODE_ENV === 'development'
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),<% if (jsLang !== 'vue') { %>
     new browsersync(
       // BrowserSync options
       {
@@ -49,7 +49,7 @@ module.exports = {
       {
         reload: false
       }
-    ),
+    ),<% } %>
     // This is until these loaders are updated for the new config system
     new webpack.LoaderOptionsPlugin({
       options: {

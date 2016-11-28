@@ -14,15 +14,19 @@
   }
 </script>
 
-<style lang="stylus" scoped>
-  // Go ahead and update the above lang and the below code with your CSS
-  // preprocessor of choice
-
-  .wrapper
+<style lang="<%= cssLoader.replace('-loader', '') %>" scoped>
+  <% if (cssLang === 'scss') { %>.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+  }<% } else { %>.wrapper
     min-height: 100vh
     display: flex
     justify-content: center
     align-items: center
     flex-wrap: wrap
-    text-align: center
+    text-align: center<% } %>
 </style>

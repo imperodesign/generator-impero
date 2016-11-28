@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 ## Added
 - Vue option.
 - New env var `DEV_NETWORK`.
+- Renamed `main.<stylesheet>` to `index.<stylesheet>`.
 
 ### Changed
 - Rename `assets/` directory to `static/`.
