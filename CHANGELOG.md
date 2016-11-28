@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.0.0-alpha13] - 2016-11-28
 ### Added
 - Changelog.
 - Yarn support to both generator and generated projects.
@@ -20,10 +20,3 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 - Make the Nodemon/Webpack bundle bug less likely to occur.
 - Update deps.
 - Remove cruft.
-
-## [1.0.0-alpha13] - XXXX-XX-XX
-### Added
-- TODO.
-
-### Changed
-- TODO.
