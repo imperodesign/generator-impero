@@ -48,7 +48,11 @@ module.exports = {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
         exclude: /node_modules/
-      },
+      },<% if (jsLang === 'vue') { %>
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },<% } %>
       {
         test: /\.<%= cssExt %>$/,
         loader: ExtractTextPlugin.extract({

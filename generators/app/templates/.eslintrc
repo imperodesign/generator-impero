@@ -1,6 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard",<% if (jsLang === 'react') { %> "standard-react",<% } %> "plugin:import/errors", "plugin:import/warnings"],
+  "extends": ["standard",<% if (jsLang === 'react') { %> "standard-react",<% } %> "plugin:import/errors", "plugin:import/warnings"],<% if (jsLang === 'vue') { %>
+  "plugins": ["html"],<% } %>
   "env": {
     "browser": true,
     "es6": true

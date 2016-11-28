@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+  head
+    title Example Title
+
+    link(href='/assets/humans.txt', rel='author', type='text/plain')
+    link(href='/assets/img/generic/favicon.ico', rel='shortcut icon')
+
+    //- Load web fonts here
+    if process.env.DEV_NETWORK !== 'offline'
+      //-
+
+    //- Load bundled CSS if not in dev
+    if process.env.NODE_ENV !== 'development'
+      link(href='/assets/dist/style.css', rel='stylesheet', type='text/css')
+
+  body
+    block content
+      .js-app
+
+    //- Load HMR JS & CSS if in dev, else just load bundled JS
+    if process.env.NODE_ENV === 'development'
+      script(src='/dev-assets/bundle.js')
+    else
+      script(src='/assets/dist/bundle.js')
+
+    block externalScripts
+      //- Load analytics here
+      if process.env.DEV_NETWORK !== 'offline'
+        //-

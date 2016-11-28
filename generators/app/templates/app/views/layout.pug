@@ -16,3 +16,8 @@ html(lang='en')
       script(src='/dev-assets/bundle.js')
     else
       script(src='/static/dist/bundle.js')
+
+    block externalScripts
+      //- Load analytics here
+      if process.env.DEV_NETWORK !== 'offline'
+        //-

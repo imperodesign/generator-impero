@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASED] - XXXX-XX-XX
+## Added
+- Vue option.
+- New env var `DEV_NETWORK`.
+
 ### Changed
 - Rename `assets/` directory to `static/`.
 - Move content of `scripts/` directory directly into parent directory.

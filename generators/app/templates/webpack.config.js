@@ -25,7 +25,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.<%= jsExt %>', '.<%= cssExt %>']
+    extensions: ['.<%= jsExt %>', <% if (jsLang === 'vue') { %>'.vue', '.pug', <% } %>'.<%= cssExt %>']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -76,7 +76,7 @@ module.exports = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.<%= jsExt %>$/,
+        test: /\.<%= jsExt %><% if (jsLang === 'vue') { %>|.vue<% } %>$/,
         loader: '<%= jsLinter %>',
         exclude: /node_modules/
       },
@@ -84,7 +84,11 @@ module.exports = {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
         exclude: /node_modules/
-      },
+      },<% if (jsLang === 'vue') { %>
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },<% } %>
       {
         test: /\.<%= cssExt %>$/,
         loaders: [

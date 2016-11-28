@@ -14,6 +14,10 @@ link(href='/static/img/favicon.ico', rel='shortcut icon')
 
 title= title
 
+//- Load web fonts here
+if process.env.DEV_NETWORK !== 'offline'
+  //-
+
 //- Load bundled CSS if not in dev
 if process.env.NODE_ENV !== 'development'
   link(href='/static/dist/style.css', rel='stylesheet', type='text/css')

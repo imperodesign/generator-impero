@@ -7,7 +7,7 @@ const app = express()
 
 // Configuration
 app.set('port', process.env.NODE_PORT || 5000)
-app.set('views', `${__dirname}/views`)
+app.set('views', <% if (jsLang === 'vue') { %>__dirname<% } else { %>`${__dirname}/views`<% } %>)
 app.set('view engine', 'pug')
 app.use('/static', express.static(`${__dirname}/static`))
 
@@ -31,9 +31,17 @@ if (process.env.NODE_ENV === 'development') {
     heartbeat: 10 * 1000
   }))
 }
+<% if (jsLang === 'vue') { %>
+// Handle POST requests on server
+require('./api')(app)
 
+// Pass all GET requests onto the client router
+app.get('*', (req, res) => {
+  res.render('base')
+})<% } else { %>
 // Routes
 require('./routes')(app)
+<% } %>
 
 // Start the server
 app.listen(app.get('port'), err => {

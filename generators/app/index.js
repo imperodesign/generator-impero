@@ -77,7 +77,7 @@ module.exports = yeoman.Base.extend({
     }, {
       type: 'list',
       name: 'jsLang',
-      message: 'Which JS feature set? (all include ES2015+ w/ Babel transpilation)',
+      message: 'Which JS feature set? (all include Babel)',
       choices: [
         {
           name: 'Vanilla',
@@ -85,6 +85,16 @@ module.exports = yeoman.Base.extend({
             name: 'vanilla',
             templateDir: 'vanilla',
             loader: 'babel-loader',
+            fileExt: 'js',
+            linter: 'eslint-loader'
+          }
+        },
+        {
+          name: 'Vue (incl/ vue-router & vue-i18n)',
+          value: {
+            name: 'vue',
+            templateDir: 'vue',
+            loader: 'babel-loader', // vue-loader is added separately
             fileExt: 'js',
             linter: 'eslint-loader'
           }
@@ -197,6 +207,18 @@ module.exports = yeoman.Base.extend({
         browserSupport: this.props.browserSupport
       }
     )
+    this.fs.copyTpl(
+      this.templatePath('app/server-routes.js'),
+      this.props.jsLang.name === 'vue' ? this.destinationPath('app/api.js') : this.destinationPath('app/routes.js'), {
+        jsLang: this.props.jsLang.name
+      }
+    )
+    this.fs.copyTpl(
+      this.templatePath('app/server.js'),
+      this.destinationPath('app/server.js'), {
+        jsLang: this.props.jsLang.name
+      }
+    )
 
     // Copy untemplated files
     this.fs.copy(
@@ -226,6 +248,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath('tslint.json'),
       this.destinationPath('tslint.json')
     )
+    if (this.props.jsLang.name === 'vue') this.fs.copy(
+      this.templatePath('app/base-vue.pug'),
+      this.destinationPath('app/base.pug')
+    )
     this.fs.copy(
       this.templatePath('app/static/humans.txt'),
       this.destinationPath('app/static/humans.txt')
@@ -234,23 +260,15 @@ module.exports = yeoman.Base.extend({
       this.templatePath('app/static/img'),
       this.destinationPath('app/static/img')
     )
-    this.fs.copy(
+    if (this.props.jsLang.name !== 'vue') this.fs.copy(
       this.templatePath('app/views'),
       this.destinationPath('app/views')
-    )
-    this.fs.copy(
-      this.templatePath('app/server.js'),
-      this.destinationPath('app/server.js')
-    )
-    this.fs.copy(
-      this.templatePath('app/routes.js'),
-      this.destinationPath('app/routes.js')
     )
 
     // Copy CSS
     this.fs.copy(
       this.templatePath(`app/src/_styles/${this.props.cssLang.templateDir}`),
-      this.destinationPath('app/src/styles')
+      this.props.jsLang.name === 'vue' ? this.destinationPath('app/src/global-styles') : this.destinationPath('app/src/styles')
     )
 
     // Copy JS
@@ -260,10 +278,29 @@ module.exports = yeoman.Base.extend({
         browserSupport: this.props.browserSupport
       }
     )
-    this.fs.copy(
-      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/modules`),
-      this.destinationPath('app/src/modules')
-    )
+    if (this.props.jsLang.name === 'vue') {
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/routes.${this.props.jsLang.fileExt}`),
+        this.destinationPath(`app/src/routes.${this.props.jsLang.fileExt}`)
+      )
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/Base.vue`),
+        this.destinationPath(`app/src/Base.vue`)
+      )
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components`),
+        this.destinationPath('app/src/components')
+      )
+      this.fs.copy(
+        this.templatePath('app/src/_scripts/_vue-locales'),
+        this.destinationPath('app/locales')
+      )
+    } else {
+      this.fs.copy(
+        this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/modules`),
+        this.destinationPath('app/src/modules')
+      )
+    }
 
     // Load dependencies from generated/copied package.json
     let deps = this.fs.readJSON(this.destinationPath('package.json'), {})
@@ -296,6 +333,11 @@ module.exports = yeoman.Base.extend({
 
     const jsOptionalDeps = {
       'vanilla': {},
+      'vue': {
+        'vue': '^2.1.0',
+        'vue-i18n': '^4.7.3',
+        'vue-router': '^2.0.1'
+      },
       'react': {
         'react': '^15.3.2',
         'react-dom': '^15.3.2'
@@ -311,8 +353,21 @@ module.exports = yeoman.Base.extend({
         'eslint-import-resolver-webpack': '^0.7.0',
         'eslint-loader': '^1.6.1',
         'eslint-plugin-import': '^2.2.0',
-        'eslint-plugin-promise': '^3.3.1',
+        'eslint-plugin-promise': '^3.4.0',
         'eslint-plugin-standard': '^2.0.1'
+      },
+      'vue': {
+        'babel-eslint': '^7.1.0',
+        'eslint': '^3.9.1',
+        'eslint-config-standard': '^6.2.1',
+        'eslint-import-resolver-webpack': '^0.7.0',
+        'eslint-loader': '^1.6.1',
+        'eslint-plugin-html': '^1.6.0',
+        'eslint-plugin-import': '^2.2.0',
+        'eslint-plugin-promise': '^3.4.0',
+        'eslint-plugin-standard': '^2.0.1',
+        'pug-loader': '^2.3.0',
+        'vue-loader': '^9.8.1'
       },
       'react': {
         'babel-eslint': '^7.1.0',
@@ -324,7 +379,7 @@ module.exports = yeoman.Base.extend({
         'eslint-import-resolver-webpack': '^0.7.0',
         'eslint-loader': '^1.6.1',
         'eslint-plugin-import': '^2.2.0',
-        'eslint-plugin-promise': '^3.3.1',
+        'eslint-plugin-promise': '^3.4.0',
         'eslint-plugin-react': '^6.6.0',
         'eslint-plugin-standard': '^2.0.1',
         'react-hot-loader': '^3.0.0-beta.6'

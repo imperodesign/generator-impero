@@ -4,8 +4,8 @@ if (module.hot) module.hot.accept()
 // Using Webpack's DefinePlugin we can use global constants such as devMode to have some code (e.g. logging) stay in our codebase but be stripped out during production builds
 if (DEVMODE) console.log('Dev mode active')
 
-// Webpack entrypoint for styles
-import './styles/main'
+// Webpack entrypoint for global styles
+import './global-styles/main'
 <% if (browserSupport === 'legacy') { %>
 // Polyfills
 if (!Array.from) {
@@ -24,19 +24,27 @@ import 'classlist.js'
 import 'es6-promise'
 import 'matchmedia-polyfill'
 <% } %>
-// This code demonstrates the code splitting/chunking ability of Webpack
-// The example module will only be loaded over the network upon us triggering the require code below
-const exampleEl = document.querySelector('.js-example')
-const exampleTriggerEl = document.querySelector('.js-example-trigger')
+// Vue initialisation
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueI18n from 'vue-i18n'
+Vue.use(VueRouter)
+Vue.use(VueI18n)
 
-if (exampleEl && exampleTriggerEl) {
-  exampleTriggerEl.addEventListener('submit', event => {
-    event.preventDefault()
+import routes from './routes'
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
 
-    System.import('./modules/example-lazy').then(func => func.default(exampleEl))
-  })
-}
+Vue.config.lang = 'en'
+Vue.config.fallbackLang = 'en'
+import locales from '../locales/index'
+for (const lang of Object.keys(locales)) Vue.locale(lang, locales[lang])
 
-// This module demonstrates basic React integration
-import reactExample from './modules/example-react'
-reactExample()
+import Base from './Base'
+new Vue({ // eslint-disable-line no-new
+  router,
+  el: document.querySelector('.js-app'),
+  render: h => h(Base)
+})
