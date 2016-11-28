@@ -9,7 +9,7 @@ if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
 
 module.exports = {
   context: __dirname,
-  entry: './app/src/scripts/main.<%= jsExt %>',
+  entry: './app/src/scripts/client.<%= jsExt %>',
   output: {
     path: __dirname + '/app/assets/dist',
     filename: 'bundle.js'

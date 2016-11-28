@@ -2,10 +2,10 @@
   "name": "<%= name %>",
   "version": "1.0.0",
   "description": "<%- description.replace('"', '') %>",
-  "main": "app/index.js",
+  "main": "app/server.js",
   "scripts": {
-    "start": "node app/index",
-    "devstart": "nodemon app/index --ignore src/",
+    "start": "node app/server",
+    "devstart": "nodemon app/server --ignore src/",
     "build": "webpack -p --config ./webpack.production.config.js"
   },
   "dependencies": {

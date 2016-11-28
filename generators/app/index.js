@@ -233,8 +233,8 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('app/views')
     )
     this.fs.copy(
-      this.templatePath('app/index.js'),
-      this.destinationPath('app/index.js')
+      this.templatePath('app/server.js'),
+      this.destinationPath('app/server.js')
     )
     this.fs.copy(
       this.templatePath('app/routes.js'),
@@ -249,8 +249,8 @@ module.exports = yeoman.Base.extend({
 
     // Copy JS
     this.fs.copyTpl(
-      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/main.${this.props.jsLang.fileExt}`),
-      this.destinationPath(`app/src/scripts/main.${this.props.jsLang.fileExt}`), {
+      this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/client.${this.props.jsLang.fileExt}`),
+      this.destinationPath(`app/src/scripts/client.${this.props.jsLang.fileExt}`), {
         browserSupport: this.props.browserSupport
       }
     )
