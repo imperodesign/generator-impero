@@ -1,0 +1,4 @@
+{
+  "presets": ["es2015", "es2016"<% if (jsLang === 'react') { %>, "react"<% } %>],
+  "plugins": ["transform-runtime", "transform-async-to-generator"<% if (jsLang === 'react') { %>, "react-hot-loader/babel"<% } %>]
+}
