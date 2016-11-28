@@ -9,7 +9,7 @@ const app = express()
 app.set('port', process.env.NODE_PORT || 5000)
 app.set('views', `${__dirname}/views`)
 app.set('view engine', 'pug')
-app.use('/assets', express.static(`${__dirname}/assets`))
+app.use('/static', express.static(`${__dirname}/static`))
 
 // Webpack HMR for development
 if (process.env.NODE_ENV === 'development') {

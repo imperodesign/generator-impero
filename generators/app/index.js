@@ -227,12 +227,12 @@ module.exports = yeoman.Base.extend({
       this.destinationPath('tslint.json')
     )
     this.fs.copy(
-      this.templatePath('app/assets/humans.txt'),
-      this.destinationPath('app/assets/humans.txt')
+      this.templatePath('app/static/humans.txt'),
+      this.destinationPath('app/static/humans.txt')
     )
     this.fs.copy(
-      this.templatePath('app/assets/img'),
-      this.destinationPath('app/assets/img')
+      this.templatePath('app/static/img'),
+      this.destinationPath('app/static/img')
     )
     this.fs.copy(
       this.templatePath('app/views'),

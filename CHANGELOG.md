@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [UNRELEASED] - XXXX-XX-XX
+### Changed
+- Rename `assets/` directory to `static/`.
+
 ## [1.0.0-alpha16] - 2016-11-28
 ### Changed
 - Update Webpack to latest version.

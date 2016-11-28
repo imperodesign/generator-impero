@@ -20,7 +20,7 @@ module.exports = {
     './app/src/scripts/client.<%= jsExt %>'
   ],
   output: {
-    path: __dirname + '/app/assets/dist',
+    path: `${__dirname}/app/static/dist`,
     publicPath: '/dev-assets',
     filename: 'bundle.js'
   },
