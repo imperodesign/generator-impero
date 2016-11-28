@@ -17,7 +17,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './app/src/scripts/client.<%= jsExt %>'
+    './app/src/client.<%= jsExt %>'
   ],
   output: {
     path: `${__dirname}/app/static/dist`,

@@ -256,13 +256,13 @@ module.exports = yeoman.Base.extend({
     // Copy JS
     this.fs.copyTpl(
       this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/client.${this.props.jsLang.fileExt}`),
-      this.destinationPath(`app/src/scripts/client.${this.props.jsLang.fileExt}`), {
+      this.destinationPath(`app/src/client.${this.props.jsLang.fileExt}`), {
         browserSupport: this.props.browserSupport
       }
     )
     this.fs.copy(
       this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/modules`),
-      this.destinationPath('app/src/scripts/modules')
+      this.destinationPath('app/src/modules')
     )
 
     // Load dependencies from generated/copied package.json

@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 ## [UNRELEASED] - XXXX-XX-XX
 ### Changed
 - Rename `assets/` directory to `static/`.
+- Move content of `scripts/` directory directly into parent directory.
 
 ## [1.0.0-alpha16] - 2016-11-28
 ### Changed
