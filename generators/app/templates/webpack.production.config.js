@@ -9,6 +9,7 @@ if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
 
 module.exports = {
   context: __dirname,
+  target: 'web',
   entry: './app/src/client.<%= jsExt %>',
   output: {
     path: `${__dirname}/app/static/dist`,
@@ -33,7 +34,7 @@ module.exports = {
         // Actual options
         postcss: () => [
           autoprefixer({
-            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9']<% } %><% if (browserSupport === 'modern') { %>['last 1 version']<% } %>
+            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9']<% } else if (browserSupport === 'modern') { %>['last 1 version']<% } %>
           })
         ]<% if (cssLang === 'stylus') { %>,
         stylus: {

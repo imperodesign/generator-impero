@@ -14,6 +14,7 @@ else {
 
 module.exports = {
   context: __dirname,
+  target: 'web',
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
@@ -37,7 +38,7 @@ module.exports = {
       // BrowserSync options
       {
         host: 'localhost',
-        port: parseInt(process.env.NODE_PORT) + 1,
+        port: Number(process.env.NODE_PORT) + 1,
         proxy: `localhost:${process.env.NODE_PORT}`,
         ui: false,
         files: 'app/views/**/*.pug',
@@ -56,14 +57,9 @@ module.exports = {
         // Enables this workaround setup to work
         context: __dirname,
         // Actual options
-        eslint: {
-          configFile: './.eslintrc',
-          emitError: true,
-          emitWarning: true
-        },
         postcss: () => [
           autoprefixer({
-            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9', '> 1%']<% } %><% if (browserSupport === 'modern') { %>['last 1 version']<% } %>
+            browsers: <% if (browserSupport === 'legacy') { %>['last 3 versions', 'ie >= 9', '> 1%']<% } else if (browserSupport === 'modern') { %>['last 1 version']<% } %>
           })
         ]<% if (cssLang === 'stylus') { %>,
         stylus: {
@@ -77,7 +73,12 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.<%= jsExt %><% if (jsLang === 'vue') { %>|.vue<% } %>$/,
-        loader: '<%= jsLinter %>',
+        loader: '<%= jsLinter %>',<% if (jsLinter === 'eslint-loader') { %>
+        options: {
+          configFile: './.eslintrc',
+          emitError: true,
+          emitWarning: true
+        },<% } %>
         exclude: /node_modules/
       },
       {
