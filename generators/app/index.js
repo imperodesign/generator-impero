@@ -9,6 +9,8 @@ const commandExists = require('command-exists')
 const validateNpmName = require('validate-npm-package-name')
 const sortNpmDeps = require('./sortNpmDeps')
 
+const shortLoaderNotation = longNotation => longNotation.replace('-loader', '')
+
 module.exports = yeoman.Base.extend({
   prompting () {
     // Have Yeoman greet the user.
@@ -318,21 +320,21 @@ module.exports = yeoman.Base.extend({
         this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/Button.vue`),
         this.destinationPath('app/src/components/Button.vue'), {
           cssLang: this.props.cssLang.name,
-          cssLoader: this.props.cssLang.name === 'sass' ? 'sass?indentedSyntax' : this.props.cssLang.loader
+          cssLoader: this.props.cssLang.name === 'sass' ? 'sass?indentedSyntax' : shortLoaderNotation(this.props.cssLang.loader)
         }
       )
       this.fs.copyTpl(
         this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/404.vue`),
         this.destinationPath('app/src/components/pages/404.vue'), {
           cssLang: this.props.cssLang.name,
-          cssLoader: this.props.cssLang.name === 'sass' ? 'sass?indentedSyntax' : this.props.cssLang.loader
+          cssLoader: this.props.cssLang.name === 'sass' ? 'sass?indentedSyntax' : shortLoaderNotation(this.props.cssLang.loader)
         }
       )
       this.fs.copyTpl(
         this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/Home.vue`),
         this.destinationPath('app/src/components/pages/Home.vue'), {
           cssLang: this.props.cssLang.name,
-          cssLoader: this.props.cssLang.loader,
+          cssLoader: shortLoaderNotation(this.props.cssLang.loader)
           cssExt: this.props.cssLang.fileExt
         }
       )

@@ -14,7 +14,7 @@
   }
 </script>
 
-<style lang="<%= cssLoader.replace('-loader', '') %>" scoped>
+<style lang="<%= cssLoader %>" scoped>
   <% if (cssLang === 'scss') { %>.wrapper {
     min-height: 100vh;
     display: flex;

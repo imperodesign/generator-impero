@@ -21,7 +21,7 @@
   }
 </script>
 
-<style lang="<%= cssLoader.replace('-loader', '') %>" scoped>
+<style lang="<%= cssLoader %>" scoped>
   <% if (cssLang === 'scss') { %>.button {
     display: inline-block;
     position: relative;
