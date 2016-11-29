@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [UNRELEASED]
+### Changed
+- Fixed Yeoman npm keyword, allowing it to be indexed.
+
 ## [1.0.0-alpha17] - 2016-11-29
 ### Added
 - Opinionated Vue option.
