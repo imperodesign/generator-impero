@@ -8,10 +8,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 ## Added
 - Opinionated Vue option.
 - New env var `DEV_NETWORK`.
-- Renamed `main.<stylesheet>` to `index.<stylesheet>`.
+- Author prompt for `package.json`.
 
 ### Changed
 - Rename `assets/` directory to `static/`.
+- Rename `main.<stylesheet>` to `index.<stylesheet>`.
 - Move content of `scripts/` directory directly into parent directory.
 
 ## [1.0.0-alpha16] - 2016-11-28
