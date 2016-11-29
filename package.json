@@ -8,6 +8,9 @@
     "generators"
   ],
   "main": "generators/index.js",
+  "scripts": {
+    "test": "mocha test/index"
+  },
   "keywords": [
     "skeleton",
     "impero",
@@ -33,7 +36,12 @@
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "pre-push": "^0.1.1",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.5.1"
+  },
   "repository": "https://github.com/imperodesign/generator-impero",
   "bugs": "https://github.com/imperodesign/generator-impero/issues",
   "license": "MIT"

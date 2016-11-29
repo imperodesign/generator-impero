@@ -12,6 +12,65 @@ const sortNpmDeps = require('./sortNpmDeps')
 
 const shortLoaderNotation = longNotation => longNotation.replace('-loader', '')
 
+const langConfig = {
+  cssLang: {
+    'stylus': {
+      name: 'stylus',
+      templateDir: 'stylus',
+      loader: 'stylus-loader',
+      fileExt: 'styl'
+    },
+    'sass': {
+      name: 'sass',
+      templateDir: 'sass',
+      loader: 'sass-loader',
+      fileExt: 'sass'
+    },
+    'scss': {
+      name: 'scss',
+      templateDir: 'scss',
+      loader: 'sass-loader',
+      fileExt: 'scss'
+    },
+    'sourdough': {
+      name: 'sourdough',
+      templateDir: 'sourdough',
+      loader: 'sourdough-loader',
+      fileExt: 'sss'
+    }
+  },
+  'jsLang': {
+    'vanilla': {
+      name: 'vanilla',
+      templateDir: 'vanilla',
+      loader: 'babel-loader',
+      fileExt: 'js',
+      linter: 'eslint-loader'
+    },
+    'vue': {
+      name: 'vue',
+      templateDir: 'vue',
+      loader: 'babel-loader', // vue-loader is added separately
+      fileExt: 'js',
+      linter: 'eslint-loader'
+    },
+    'react': {
+      name: 'react',
+      templateDir: 'react',
+      loader: 'babel-loader',
+      fileExt: 'js',
+      linter: 'eslint-loader'
+    },
+    'typescript': {
+      name: 'typescript',
+      templateDir: 'typescript',
+      loader: 'babel-loader!ts-loader?sourceMap',
+      fileExt: 'ts',
+      linter: 'tslint-loader'
+    }
+  }
+}
+
 module.exports = yeoman.Base.extend({
   prompting () {
     // Have Yeoman greet the user.
@@ -43,100 +102,30 @@ module.exports = yeoman.Base.extend({
       name: 'cssLang',
       message: 'Which CSS preprocessor?',
       choices: [
-        {
-          name: 'Stylus',
-          value: {
-            name: 'stylus',
-            templateDir: 'stylus',
-            loader: 'stylus-loader',
-            fileExt: 'styl'
-          }
-        },
-        {
-          name: 'Sass',
-          value: {
-            name: 'sass',
-            templateDir: 'sass',
-            loader: 'sass-loader',
-            fileExt: 'sass'
-          }
-        },
-        {
-          name: 'Sass (SCSS)',
-          value: {
-            name: 'scss',
-            templateDir: 'scss',
-            loader: 'sass-loader',
-            fileExt: 'scss'
-          }
-        },
-        {
-          name: chalk.gray('Sourdough / SSS'),
-          disabled: 'Requires a Webpack-compatible loader to be developed.',
-          value: {
-            name: 'Sourdough',
-            templateDir: 'sourdough',
-            loader: 'sourdough-loader',
-            fileExt: 'sss'
-          }
-        }
+        { name: 'Stylus', value: 'stylus' },
+        { name: 'Sass', value: 'sass' },
+        { name: 'Sass (SCSS)', value: 'scss' },
+        { name: chalk.gray('Sourdough / SSS'), value: 'sourdough', disabled: 'Requires a Webpack-compatible loader to be developed.' }
       ],
-      default: 0
+      default: 'stylus'
     }, {
       type: 'list',
       name: 'jsLang',
       message: 'Which JS feature set? (all include Babel)',
       choices: [
-        {
-          name: 'Vanilla',
-          value: {
-            name: 'vanilla',
-            templateDir: 'vanilla',
-            loader: 'babel-loader',
-            fileExt: 'js',
-            linter: 'eslint-loader'
-          }
-        },
-        {
-          name: 'Vue (incl/ vue-router & vue-i18n)',
-          value: {
-            name: 'vue',
-            templateDir: 'vue',
-            loader: 'babel-loader', // vue-loader is added separately
-            fileExt: 'js',
-            linter: 'eslint-loader'
-          }
-        },
-        {
-          name: 'React',
-          value: {
-            name: 'react',
-            templateDir: 'react',
-            loader: 'babel-loader',
-            fileExt: 'js',
-            linter: 'eslint-loader'
-          }
-        },
-        {
-          name: chalk.gray('TypeScript'),
-          disabled: 'Dev work required. Coming soon!',
-          value: {
-            name: 'typescript',
-            templateDir: 'typescript',
-            loader: 'babel-loader!ts-loader?sourceMap',
-            fileExt: 'ts',
-            linter: 'tslint-loader'
-          }
-        }
+        { name: 'Vanilla', value: 'vanilla' },
+        { name: 'Vue (incl/ vue-router & vue-i18n)', value: 'vue' },
+        { name: 'React', value: 'react' },
+        { name: chalk.gray('TypeScript'), value: 'typescript', disabled: 'Dev work required. Coming soon!' }
       ],
-      default: 0
+      default: 'vanilla'
     }, {
       type: 'list',
       name: 'browserSupport',
       message: 'Browser support?',
       choices: [
-        {name: 'Legacy (IE9+)', value: 'legacy'},
-        {name: 'Modern (Chrome, Firefox, Edge, Safari)', value: 'modern'}
+        { name: 'Legacy (IE9+)', value: 'legacy' },
+        { name: 'Modern (Chrome, Firefox, Edge, Safari)', value: 'modern' }
       ],
       default: 'legacy'
     }, {
@@ -152,8 +141,12 @@ module.exports = yeoman.Base.extend({
     }]
 
     return this.prompt(prompts).then(answers => {
-      // To access props later use this.props.exampleAnswer
       this.props = answers
+
+      // Populate cssLang and jsLang data from previously defined object
+      // Data is specified this way so as to allow easier testing of prompts
+      // It also has the benefit of keeping all the config data together
+      for (const lang in langConfig) this.props[lang] = langConfig[lang][this.props[lang]]
 
       // Pass the project name to a potential parent generator
       this.options.projectName = this.props.projectName
