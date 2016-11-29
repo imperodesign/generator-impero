@@ -18,8 +18,8 @@ yo impero
 
 This is a generator providing the following options:
 
-- Sass (incl/ SCSS) / Stylus / Sourdough (coming soon)
-- Vanilla JS / React / TypeScript (coming soon)
+- Stylus / Sass (incl/ SCSS) / Sourdough (coming soon)
+- Vanilla JS / Vue (incl/ vue-router & vue-i18n) / React / TypeScript (coming soon)
 
 ...based upon a foundation of the following:
 
