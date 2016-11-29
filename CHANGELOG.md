@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [UNRELEASED] - XXXX-XX-XX
 ## Added
-- Vue option.
+- Opinionated Vue option.
 - New env var `DEV_NETWORK`.
 - Renamed `main.<stylesheet>` to `index.<stylesheet>`.
 
