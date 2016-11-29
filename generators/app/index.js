@@ -36,13 +36,12 @@ module.exports = yeoman.Base.extend({
       message: 'Which CSS preprocessor?',
       choices: [
         {
-          name: chalk.gray('Sourdough / SSS'),
-          disabled: 'Requires a Webpack-compatible loader to be developed.',
+          name: 'Stylus',
           value: {
-            name: 'Sourdough',
-            templateDir: 'sourdough',
-            loader: 'sourdough-loader',
-            fileExt: 'sss'
+            name: 'stylus',
+            templateDir: 'stylus',
+            loader: 'stylus-loader',
+            fileExt: 'styl'
           }
         },
         {
@@ -64,12 +63,13 @@ module.exports = yeoman.Base.extend({
           }
         },
         {
-          name: 'Stylus',
+          name: chalk.gray('Sourdough / SSS'),
+          disabled: 'Requires a Webpack-compatible loader to be developed.',
           value: {
-            name: 'stylus',
-            templateDir: 'stylus',
-            loader: 'stylus-loader',
-            fileExt: 'styl'
+            name: 'Sourdough',
+            templateDir: 'sourdough',
+            loader: 'sourdough-loader',
+            fileExt: 'sss'
           }
         }
       ],
