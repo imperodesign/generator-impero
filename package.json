@@ -11,8 +11,7 @@
   "keywords": [
     "skeleton",
     "impero",
-    "yeoman",
-    "generator",
+    "yeoman-generator",
     "es2015",
     "babel",
     "webpack",
@@ -20,6 +19,7 @@
     "sass",
     "stylus",
     "react",
+    "vue",
     "node",
     "express"
   ],
