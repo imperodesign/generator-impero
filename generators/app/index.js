@@ -334,7 +334,7 @@ module.exports = yeoman.Base.extend({
         this.templatePath(`app/src/_scripts/${this.props.jsLang.templateDir}/components/pages/Home.vue`),
         this.destinationPath('app/src/components/pages/Home.vue'), {
           cssLang: this.props.cssLang.name,
-          cssLoader: shortLoaderNotation(this.props.cssLang.loader)
+          cssLoader: shortLoaderNotation(this.props.cssLang.loader),
           cssExt: this.props.cssLang.fileExt
         }
       )
