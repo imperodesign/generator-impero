@@ -45,11 +45,11 @@ During setup you will be asked for your targeted browser support. "Modern" is de
 
 The following JS polyfills are included in legacy builds:
 
-- Array.from() - no native support in IE, Opera
-- String.prototype.includes() - no native support in IE, Opera
-- Element.classList - no native support below IE10, and only partial support in IE10 & IE11
 - Promise - no native support in IE
+- Element.classList - no native support below IE10, and only partial support in IE10 & IE11
 - Window.matchMedia() - no native support below IE10
+- String.prototype.includes() - no native support in IE, Opera
+- Array.from() - no native support in IE, Opera
 
 If you select the modern browsers configuration these polyfills will not be included.
 
