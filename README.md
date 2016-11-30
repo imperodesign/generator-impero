@@ -2,7 +2,7 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-impero using [npm](https://www.npmjs.com/)
+First, install [Yeoman](http://yeoman.io) and generator-impero using [npm](https://www.npmjs.com/):
 
 ```bash
 npm i -g yo generator-impero
@@ -16,14 +16,24 @@ yo impero
 
 ## Information
 
-This is a generator providing the following options:
+This is a generator providing the following options...
 
-- Stylus / Sass (incl/ SCSS) / Sourdough (coming soon)
-- Vanilla JS / Vue (incl/ vue-router & vue-i18n) / React / TypeScript (coming soon)
+JavaScript:
+
+- Vanilla
+- Vue.js (incl/ single file components, vue-router & vue-i18n)
+- React
+- TypeScript _coming soon_
+
+CSS:
+- Stylus
+- Sass
+- SCSS
+- Sourdough _coming soon_
 
 ...based upon a foundation of the following:
 
-- Node / Express on the backend
+- Node.js / Express on the backend
 - Pug templating language
 - npm for package management (Yarn will be used if available)
 - dotenv for enviromment variables
@@ -31,7 +41,7 @@ This is a generator providing the following options:
 
 ### Legacy Browsers
 
-During setup you will be asked for your targeted browser support. "Modern" is defined as the latest versions of Chrome, Firefox, Edge, and Safari. "Legacy" is defined as IE9+
+During setup you will be asked for your targeted browser support. "Modern" is defined as the latest versions of Chrome, Firefox, Edge, and Safari. "Legacy" is summarily defined as IE9+.
 
 The following JS polyfills are included in legacy builds:
 
@@ -41,19 +51,46 @@ The following JS polyfills are included in legacy builds:
 - Promise - no native support in IE
 - Window.matchMedia() - no native support below IE10
 
-If you select the modern browsers configuration these polyfills will not be included
+If you select the modern browsers configuration these polyfills will not be included.
 
-For now, Babel transpilation down to ES5 will be included in all builds
+For now, Babel transpilation down to ES5 will be included in all builds.
+
+### Directory Setup
+
+Following generation you will end up with something like this, dependent upon the options you selected:
+
+```
+.
+├── app/
+│   └── routes.js
+│   └── server.js
+│   └── src/
+│       └── modules/
+│           └── [etc].js
+│       └── styles/
+│           └── [etc].styl
+│       └── client.js
+│   └── static/
+│       └── humans.txt
+│       └── img/
+│   └── views/
+│       └── [etc].pug
+├── .babelrc
+├── .editorconfig
+├── .env.example
+├── .gitignore
+├── .eslintrc
+├── .gitignore
+├── CHANGELOG.md
+├── README.md
+├── package.json
+├── webpack.config.js
+├── webpack.production.js
+```
 
 ## Help
 
-If you have any immediate issues, the first port of call is Yeoman Doctor:
-
-```bash
-yo doctor
-```
-
-Failing that, it's also possible that you'll need to open a new terminal window for Yeoman to pick up on the newly installed generator
+Once generation is complete you should check the generated README for a quick setup guide. The project should immediately run and function as if you'd painstakingly scaffolded it out yourself. If for any reason that doesn't happen, please file an issue detailing the options you selected, the error that was thrown (if any), and any further pertient information.
 
 [npm-version-image]: https://badge.fury.io/js/generator-impero.svg
 [npm-version-url]: https://npmjs.org/package/generator-impero
