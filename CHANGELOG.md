@@ -4,9 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
-## [UNRELEASED]
+## [1.0.0-alpha18] - 2016-11-30
 ### Changed
 - Fixed Yeoman npm keyword, allowing it to be indexed.
+- Update Webpack config to latest standard.
 
 ## [1.0.0-alpha17] - 2016-11-29
 ### Added
