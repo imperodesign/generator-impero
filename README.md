@@ -1,8 +1,8 @@
-# generator-impero [![NPM version][npm-version-image]][npm-version-url] [![NPM Downloads][npm-downloads-image]][npm-downloads-url] [![Dependency Status][daviddm-image]][daviddm-url] [![License][license-image]][license-url]
+# Impero generator [![NPM version][npm-version-image]][npm-version-url] [![NPM Downloads][npm-downloads-image]][npm-downloads-url] [![Dependency Status][daviddm-image]][daviddm-url] [![License][license-image]][license-url]
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-impero using [npm](https://www.npmjs.com/):
+First, install [Yeoman](http://yeoman.io) and the Impero generator using [npm](https://www.npmjs.com/):
 
 ```bash
 npm i -g yo generator-impero
@@ -90,7 +90,7 @@ Following generation you will end up with something like this, dependent upon th
 
 ## Help
 
-Once generation is complete you should check the generated README for a quick setup guide. The project should immediately run and function as if you'd painstakingly scaffolded it out yourself. If for any reason that doesn't happen, please file an issue detailing the options you selected, the error that was thrown (if any), and any further pertient information.
+Once generation is complete you should check the generated README for a quick setup guide. The project should immediately run and function as if you'd painstakingly scaffolded it out yourself. If for any reason that doesn't happen, please file an issue detailing the options you selected, the error that was thrown (if any), and any further pertinent information.
 
 [npm-version-image]: https://badge.fury.io/js/generator-impero.svg
 [npm-version-url]: https://npmjs.org/package/generator-impero
