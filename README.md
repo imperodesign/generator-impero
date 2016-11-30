@@ -78,7 +78,6 @@ Following generation you will end up with something like this, dependent upon th
 ├── .babelrc
 ├── .editorconfig
 ├── .env.example
-├── .gitignore
 ├── .eslintrc
 ├── .gitignore
 ├── CHANGELOG.md
