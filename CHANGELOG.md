@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ### Changed
 - Correct license discrepancy. For clarification, this project is GNU GPL v3. Generated projects can be whatever you'd like.
+- Move Webpack configs into subdirectory `build/` and move a few shared config options into a shared base config.
 - Fix bug whereby Vue generated project would be missing required extension resolvers in `webpack.production.config.js`.
 - Fix bug whereby you could add multiple double quotes to your description, each after the first of which then breaking `package.json`.
 

@@ -15,7 +15,7 @@ app.use('/static', express.static(`${__dirname}/static`))
 if (process.env.NODE_ENV === 'development') {
   // Create & configure a webpack compiler
   const webpack = require('webpack')
-  const webpackConfig = require('../webpack.config')
+  const webpackConfig = require('../build/webpack.development.config')
   const compiler = webpack(webpackConfig)
 
   // Attach the dev middleware to the compiler & the server

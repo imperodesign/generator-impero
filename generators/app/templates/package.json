@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app/server",
     "devstart": "nodemon app/server --ignore src/",
-    "build": "webpack -p --config ./webpack.production.config.js"
+    "build": "webpack -p --config build/webpack.production.config.js"
   },
   "dependencies": {
     "express": "^4.14.0",
@@ -27,6 +27,7 @@
     "dotenv": "^2.0.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "json-loader": "^0.5.4",
+    "lodash.merge": "^4.6.0",
     "nodemon": "^1.11.0",
     "postcss-loader": "^1.1.0",
     "style-loader": "github:bendytree/style-loader",

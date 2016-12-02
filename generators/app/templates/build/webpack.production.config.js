@@ -1,22 +1,18 @@
 'use strict'
 
+const merge = require('lodash.merge')
 const webpack = require('webpack')
+const baseConfig = require('./webpack.base.config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
 
 if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
 
-module.exports = {
-  context: __dirname,
-  target: 'web',
+module.exports = merge(baseConfig, {
   entry: './app/src/client.<%= jsExt %>',
   output: {
-    path: `${__dirname}/app/static/dist`,
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.<%= jsExt %>', <% if (jsLang === 'vue') { %>'.vue', '.pug', <% } %>'.json', '.<%= cssExt %>']
+    path: `${__dirname}/../app/static/dist`
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -72,4 +68,4 @@ module.exports = {
       }
     ]
   }
-}
+})

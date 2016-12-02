@@ -1,7 +1,9 @@
 'use strict'
 
 const fs = require('fs')
-const webpack = require('webpack')<% if (jsLang !== 'vue') { %>
+const merge = require('lodash.merge')
+const webpack = require('webpack')
+const baseConfig = require('./webpack.base.config')<% if (jsLang !== 'vue') { %>
 const browsersync = require('browser-sync-webpack-plugin')<% } %>
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
@@ -12,21 +14,14 @@ else {
   process.env.NODE_PORT = 5000
 }
 
-module.exports = {
-  context: __dirname,
-  target: 'web',
+module.exports = merge(baseConfig, {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './app/src/client.<%= jsExt %>'
   ],
   output: {
-    path: `${__dirname}/app/static/dist`,
-    publicPath: '/dev-assets',
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.<%= jsExt %>', <% if (jsLang === 'vue') { %>'.vue', '.pug', <% } %>'.json', '.<%= cssExt %>']
+    publicPath: '/dev-assets'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -105,4 +100,4 @@ module.exports = {
       }
     ]
   }
-}
+})

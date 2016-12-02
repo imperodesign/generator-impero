@@ -186,21 +186,8 @@ module.exports = yeoman.Base.extend({
       }
     )
     this.fs.copyTpl(
-      this.templatePath('webpack.config.js'),
-      this.destinationPath('webpack.config.js'), {
-        cssLang: this.props.cssLang.name,
-        cssLoader: this.props.cssLang.loader,
-        cssExt: this.props.cssLang.fileExt,
-        jsLang: this.props.jsLang.name,
-        jsLoader: this.props.jsLang.loader,
-        jsExt: this.props.jsLang.fileExt,
-        jsLinter: this.props.jsLang.linter,
-        browserSupport: this.props.browserSupport
-      }
-    )
-    this.fs.copyTpl(
-      this.templatePath('webpack.production.config.js'),
-      this.destinationPath('webpack.production.config.js'), {
+      this.templatePath('build/'),
+      this.destinationPath('build/'), {
         cssLang: this.props.cssLang.name,
         cssLoader: this.props.cssLang.loader,
         cssExt: this.props.cssLang.fileExt,
