@@ -16,7 +16,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.<%= jsExt %>', '.<%= cssExt %>']
+    extensions: ['.<%= jsExt %>', '.json', '.<%= cssExt %>']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -45,6 +45,10 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
       {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',

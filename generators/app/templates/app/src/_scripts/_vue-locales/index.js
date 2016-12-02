@@ -1,4 +1,4 @@
-import en from './en'
+import en from './en' // English
 
 export default {
   en
