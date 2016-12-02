@@ -37,12 +37,12 @@ const testLegacyPolyfillsExistence = shouldBeThere => {
 
 describe('generator-impero', () => {
   describe('bad desc, vue, modern browsers, copy .env', () => {
-    const expectedDescription = 'Description... let thy appended double quote be removed!'
+    const expectedDescription = 'Description... let thy appended double quotes be removed!'
 
     before(done => {
       helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts(Object.assign(cfg.sharedPromptAnswers, {
-          'description': expectedDescription + '"', // Intentional error: double quote in JSON
+          'description': expectedDescription + '"""', // Intentional error: double quotes in JSON
           'jsLang': 'vue',
           'browserSupport': 'modern',
           'copyEnv': true,

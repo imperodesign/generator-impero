@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-alpha19] - 2016-12-02
+### Added
+- Built-in JSON import support. Vue locale files have also been updated to accomodate this.
+
+### Changed
+- Correct license discrepancy. For clarification, this project is GNU GPL v3. Generated projects can be whatever you'd like.
+- Fix bug whereby Vue generated project would be missing required extension resolvers in `webpack.production.config.js`.
+- Fix bug whereby you could add multiple double quotes to your description, each after the first of which then breaking `package.json`.
+
 ## [1.0.0-alpha18] - 2016-11-30
 ### Changed
 - Fixed Yeoman npm keyword, allowing it to be indexed.

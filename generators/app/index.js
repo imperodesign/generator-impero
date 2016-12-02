@@ -12,6 +12,8 @@ const sortNpmDeps = require('./sortNpmDeps')
 
 const shortLoaderNotation = longNotation => longNotation.replace('-loader', '')
 
+const escapeStrForJSON = string => string.replace(/"/g, '')
+
 const langConfig = {
   cssLang: {
     'stylus': {
@@ -171,8 +173,8 @@ module.exports = yeoman.Base.extend({
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
         name: this.props.projectName,
-        description: this.props.description,
-        author: this.props.author
+        description: escapeStrForJSON(this.props.description),
+        author: escapeStrForJSON(this.props.author)
       }
     )
     this.fs.copyTpl(
