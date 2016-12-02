@@ -16,7 +16,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.<%= jsExt %>', '.json', '.<%= cssExt %>']
+    extensions: ['.<%= jsExt %>', <% if (jsLang === 'vue') { %>'.vue', '.pug', <% } %>'.json', '.<%= cssExt %>']
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
