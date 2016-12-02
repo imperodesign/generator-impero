@@ -1,7 +1,18 @@
+if !title
+  - title = 'Fallback title'
+if !desc
+  - desc = 'Fallback description'
+
 doctype html
 html(lang='en')
   head
-    title Example Title
+    title= title
+
+    meta(name='description', content=desc)
+
+    meta(charset='utf-8')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
 
     link(href='/assets/humans.txt', rel='author', type='text/plain')
     link(href='/assets/img/generic/favicon.ico', rel='shortcut icon')
