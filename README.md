@@ -75,6 +75,10 @@ Following generation you will end up with something like this, dependent upon th
 │       └── img/
 │   └── views/
 │       └── [etc].pug
+├── build/
+│   └── webpack.base.config.js
+│   └── webpack.development.config.js
+│   └── webpack.production.js
 ├── .babelrc
 ├── .editorconfig
 ├── .env.example
@@ -83,8 +87,6 @@ Following generation you will end up with something like this, dependent upon th
 ├── CHANGELOG.md
 ├── README.md
 ├── package.json
-├── webpack.config.js
-├── webpack.production.js
 ```
 
 ## Help

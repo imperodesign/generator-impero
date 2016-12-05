@@ -16,7 +16,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [1.0.0-alpha18] - 2016-11-30
 ### Changed
-- Fixed Yeoman npm keyword, allowing it to be indexed.
+- Fix Yeoman npm keyword, allowing it to be indexed.
 - Update Webpack config to latest standard.
 
 ## [1.0.0-alpha17] - 2016-11-29
