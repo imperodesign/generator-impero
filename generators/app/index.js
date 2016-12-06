@@ -357,7 +357,7 @@ module.exports = yeoman.Base.extend({
     // Define optional dependencies
     const legacyOptionalDeps = {
       'classlist.js': '^1.1.20150312',
-      'es6-promise': '^4.0.3',
+      'es6-promise': '^4.0.5',
       'matchmedia-polyfill': '^0.3.0',
     }
 
@@ -365,12 +365,12 @@ module.exports = yeoman.Base.extend({
       'sourdough': {},
       'sass': {
         'breakpoint-sass': '^2.7.0',
-        'node-sass': '^3.11.2',
+        'node-sass': '^3.13.0',
         'sass-loader': '^4.0.2'
       },
       'scss': {
         'breakpoint-sass': '^2.7.0',
-        'node-sass': '^3.11.2',
+        'node-sass': '^3.13.0',
         'sass-loader': '^4.0.2'
       },
       'stylus': {
@@ -383,9 +383,9 @@ module.exports = yeoman.Base.extend({
     const jsOptionalDeps = {
       'vanilla': {},
       'vue': {
-        'vue': '^2.1.0',
-        'vue-i18n': '^4.7.3',
-        'vue-router': '^2.0.1'
+        'vue': '^2.1.4',
+        'vue-i18n': '^4.7.4',
+        'vue-router': '^2.1.1'
       },
       'react': {
         'react': '^15.3.2',
@@ -396,10 +396,10 @@ module.exports = yeoman.Base.extend({
 
     const jsOptionalDevDeps = {
       'vanilla': {
-        'babel-eslint': '^7.1.0',
+        'babel-eslint': '^7.1.1',
         'browser-sync': '^2.17.5',
         'browser-sync-webpack-plugin': '^1.1.3',
-        'eslint': '^3.9.1',
+        'eslint': '^3.11.1',
         'eslint-config-standard': '^6.2.1',
         'eslint-import-resolver-webpack': '^0.7.0',
         'eslint-loader': '^1.6.1',
@@ -408,24 +408,25 @@ module.exports = yeoman.Base.extend({
         'eslint-plugin-standard': '^2.0.1'
       },
       'vue': {
-        'babel-eslint': '^7.1.0',
-        'eslint': '^3.9.1',
+        'babel-eslint': '^7.1.1',
+        'eslint': '^3.11.1',
         'eslint-config-standard': '^6.2.1',
         'eslint-import-resolver-webpack': '^0.7.0',
         'eslint-loader': '^1.6.1',
-        'eslint-plugin-html': '^1.6.0',
+        'eslint-plugin-html': '^1.7.0',
         'eslint-plugin-import': '^2.2.0',
         'eslint-plugin-promise': '^3.4.0',
         'eslint-plugin-standard': '^2.0.1',
         'pug-loader': '^2.3.0',
-        'vue-loader': '^9.8.1'
+        'vue-loader': '^10.0.2',
+        'vue-template-compiler': '^2.1.4'
       },
       'react': {
-        'babel-eslint': '^7.1.0',
+        'babel-eslint': '^7.1.1',
         'babel-preset-react': '^6.16.0',
         'browser-sync': '^2.17.5',
         'browser-sync-webpack-plugin': '^1.1.3',
-        'eslint': '^3.9.1',
+        'eslint': '^3.11.1',
         'eslint-config-standard': '^6.2.1',
         'eslint-config-standard-jsx': '^3.2.0',
         'eslint-config-standard-react': '^4.2.0',
