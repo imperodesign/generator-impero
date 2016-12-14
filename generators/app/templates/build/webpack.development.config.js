@@ -14,7 +14,7 @@ require('dotenv').config({ silent: true })
 const port = Number(process.env.NODE_PORT) || 5000
 
 module.exports = merge(baseConfig, {
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './app/src/client.<%= jsExt %>'
