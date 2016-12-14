@@ -33,7 +33,7 @@ if (exampleEl && exampleTriggerEl) {
   exampleTriggerEl.addEventListener('submit', event => {
     event.preventDefault()
 
-    System.import('./modules/example-lazy').then(func => func.default(exampleEl))
+    import('./modules/example-lazy').then(func => func.default(exampleEl))
   })
 }
 
