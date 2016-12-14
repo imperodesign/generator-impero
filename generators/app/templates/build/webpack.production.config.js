@@ -10,7 +10,8 @@ const rupture = require('rupture')<% } %>
 module.exports = merge(baseConfig, {
   entry: './app/src/client.<%= jsExt %>',
   output: {
-    path: `${__dirname}/../app/static/dist`
+    path: `${__dirname}/../app/static/dist`,
+    publicPath: '/static/dist/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

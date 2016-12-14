@@ -20,7 +20,7 @@ module.exports = merge(baseConfig, {
     './app/src/client.<%= jsExt %>'
   ],
   output: {
-    publicPath: '/dev-assets'
+    publicPath: '/dev-assets/'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
