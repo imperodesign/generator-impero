@@ -76,10 +76,6 @@ module.exports = merge(baseConfig, {
         exclude: /node_modules/
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
         exclude: /node_modules/

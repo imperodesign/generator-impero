@@ -40,10 +40,6 @@ module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.<%= jsExt %>$/,
         loader: '<%= jsLoader %>',
         exclude: /node_modules/
