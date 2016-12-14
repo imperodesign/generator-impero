@@ -8,11 +8,10 @@ const browsersync = require('browser-sync-webpack-plugin')<% } %>
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
 
-if (fs.existsSync(`${__dirname}/.env`)) require('dotenv').load()
-else {
-  process.env.NODE_ENV = 'development'
-  process.env.NODE_PORT = 5000
-}
+// Set var with fallbacks in case the env file failed to load or the env var is missing
+require('dotenv').config({ silent: true })
+
+const port = Number(process.env.NODE_PORT) || 5000
 
 module.exports = merge(baseConfig, {
   devtool: 'source-map',
@@ -26,15 +25,15 @@ module.exports = merge(baseConfig, {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
-      DEVMODE: process.env.NODE_ENV === 'development'
+      DEVMODE: true
     }),
     new webpack.HotModuleReplacementPlugin(),<% if (jsLang !== 'vue') { %>
     new browsersync(
       // BrowserSync options
       {
         host: 'localhost',
-        port: Number(process.env.NODE_PORT) + 1,
-        proxy: `localhost:${process.env.NODE_PORT}`,
+        port: port + 1,
+        proxy: `localhost:${String(port)}`,
         ui: false,
         files: 'app/views/**/*.pug',
         open: false,

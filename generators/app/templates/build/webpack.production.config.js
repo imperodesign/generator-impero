@@ -7,8 +7,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')<% if (cssLang === 'stylus') { %>
 const rupture = require('rupture')<% } %>
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV === 'production'
-
 module.exports = merge(baseConfig, {
   entry: './app/src/client.<%= jsExt %>',
   output: {
@@ -17,7 +15,7 @@ module.exports = merge(baseConfig, {
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
-      DEVMODE: process.env.NODE_ENV === 'development'
+      DEVMODE: false
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),

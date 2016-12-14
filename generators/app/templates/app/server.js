@@ -1,7 +1,7 @@
 'use strict'
 
 // Dependencies
-require('dotenv').load()
+require('dotenv').config({ silent: false })
 const express = require('express')
 const app = express()
 
@@ -40,8 +40,7 @@ app.get('*', (req, res) => {
   res.render('base')
 })<% } else { %>
 // Routes
-require('./routes')(app)
-<% } %>
+require('./routes')(app)<% } %>
 
 // Start the server
 app.listen(app.get('port'), err => {
