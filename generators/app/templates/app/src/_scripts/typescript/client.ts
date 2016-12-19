@@ -21,7 +21,7 @@ if (!String.prototype.includes) {
   }
 }
 import 'classlist.js'
-import 'es6-promise'
+import 'es6-promise/auto'
 import 'matchmedia-polyfill'
 <% } %>
 // This code demonstrates the code splitting/chunking ability of Webpack
