@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0-alpha20] - 2016-12-19
+### Added
+- Webpack tree shaking. It was previously broken by Babel.
+
+### Changed
+- Update deps including Webpack to release candidate.
+- Swap all instances of `System.import()` with `import()` and update linting dependencies accordingly.
+- Faster source maps.
+- Disable Webpack performance warning in development.
+- Remove `json-loader` as Webpack now has JSON support built-in.
+- Mark `babel-runtime` as explicit dependency (for async plugin/transform).
+- Fix Promise polyfill not polyfilling global browser environment.
+- Fix regression in assets directory name for Vue config.
+
 ## [1.0.0-alpha19] - 2016-12-02
 ### Added
 - Built-in JSON import support. Vue locale files have also been updated to accomodate this.
