@@ -13,6 +13,9 @@ module.exports = merge(baseConfig, {
     path: `${__dirname}/../app/static/dist`,
     publicPath: '/static/dist/'
   },
+  performance: {
+    hints: 'warning'
+  },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
