@@ -14,8 +14,8 @@ html(lang='en')
     meta(http-equiv='x-ua-compatible', content='ie=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1')
 
-    link(href='/assets/humans.txt', rel='author', type='text/plain')
-    link(href='/assets/img/generic/favicon.ico', rel='shortcut icon')
+    link(href='/static/humans.txt', rel='author', type='text/plain')
+    link(href='/static/img/generic/favicon.ico', rel='shortcut icon')
 
     //- Load web fonts here
     if process.env.DEV_NETWORK !== 'offline'
@@ -23,7 +23,7 @@ html(lang='en')
 
     //- Load bundled CSS if not in dev
     if process.env.NODE_ENV !== 'development'
-      link(href='/assets/dist/style.css', rel='stylesheet', type='text/css')
+      link(href='/static/dist/style.css', rel='stylesheet', type='text/css')
 
   body
     block content
@@ -33,7 +33,7 @@ html(lang='en')
     if process.env.NODE_ENV === 'development'
       script(src='/dev-assets/bundle.js')
     else
-      script(src='/assets/dist/bundle.js')
+      script(src='/static/dist/bundle.js')
 
     block externalScripts
       //- Load analytics here
