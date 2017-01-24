@@ -33,12 +33,6 @@ const langConfig = {
       templateDir: 'scss',
       loader: 'sass-loader',
       fileExt: 'scss'
-    },
-    'sourdough': {
-      name: 'sourdough',
-      templateDir: 'sourdough',
-      loader: 'sourdough-loader',
-      fileExt: 'sss'
     }
   },
   'jsLang': {
@@ -62,13 +56,6 @@ const langConfig = {
       loader: 'babel-loader',
       fileExt: 'js',
       linter: 'eslint-loader'
-    },
-    'typescript': {
-      name: 'typescript',
-      templateDir: 'typescript',
-      loader: 'babel-loader!ts-loader?sourceMap',
-      fileExt: 'ts',
-      linter: 'tslint-loader'
     }
   }
 }
@@ -106,8 +93,7 @@ module.exports = yeoman.Base.extend({
       choices: [
         { name: 'Stylus', value: 'stylus' },
         { name: 'Sass', value: 'sass' },
-        { name: 'Sass (SCSS)', value: 'scss' },
-        { name: chalk.gray('Sourdough / SSS'), value: 'sourdough', disabled: 'Requires a Webpack-compatible loader to be developed.' }
+        { name: 'Sass (SCSS)', value: 'scss' }
       ],
       default: 'stylus'
     }, {
@@ -117,8 +103,7 @@ module.exports = yeoman.Base.extend({
       choices: [
         { name: 'Vanilla', value: 'vanilla' },
         { name: 'Vue (incl/ vue-router & vue-i18n)', value: 'vue' },
-        { name: 'React', value: 'react' },
-        { name: chalk.gray('TypeScript'), value: 'typescript', disabled: 'Dev work required. Coming soon!' }
+        { name: 'React', value: 'react' }
       ],
       default: 'vanilla'
     }, {
@@ -221,7 +206,7 @@ module.exports = yeoman.Base.extend({
       this.templatePath('.env.example'),
       this.destinationPath('.env')
     )
-    if (this.props.jsLang.name !== 'typescript') this.fs.copyTpl(
+    this.fs.copyTpl(
       this.templatePath('.eslintrc'),
       this.destinationPath('.eslintrc'), {
         jsLang: this.props.jsLang.name
@@ -235,10 +220,6 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(
       this.templatePath('CHANGELOG.md'),
       this.destinationPath('CHANGELOG.md')
-    )
-    if (this.props.jsLang.name === 'typescript') this.fs.copy(
-      this.templatePath('tslint.json'),
-      this.destinationPath('tslint.json')
     )
     if (this.props.jsLang.name === 'vue') this.fs.copy(
       this.templatePath('app/base-vue.pug'),
@@ -362,7 +343,6 @@ module.exports = yeoman.Base.extend({
     }
 
     const cssOptionalDevDeps = {
-      'sourdough': {},
       'sass': {
         'breakpoint-sass': '^2.7.0',
         'node-sass': '^3.13.0',
@@ -390,8 +370,7 @@ module.exports = yeoman.Base.extend({
       'react': {
         'react': '^15.3.2',
         'react-dom': '^15.3.2'
-      },
-      'typescript': {}
+      }
     }
 
     const jsOptionalDevDeps = {
@@ -437,14 +416,6 @@ module.exports = yeoman.Base.extend({
         'eslint-plugin-react': '^6.6.0',
         'eslint-plugin-standard': '^2.0.1',
         'react-hot-loader': '^3.0.0-beta.6'
-      },
-      'typescript': {
-        'browser-sync': '^2.17.5',
-        'browser-sync-webpack-plugin': '^1.1.3',
-        'ts-loader': '^0.8.2',
-        'tslint': '^3.15.1',
-        'tslint-loader': '^2.1.5',
-        'typescript': '^1.8.10'
       }
     }
 
@@ -484,12 +455,9 @@ module.exports = yeoman.Base.extend({
       } else {
         // The installDependencies function built-in to Yeoman does not work
         // inside this commandExists function:
-        // this.installDependencies({ bower: false })
         this.log(`\n---\nNearly done! All that's left now is to run ${chalk.bgYellow.black('npm install')}. Here goes... ${emoji.get('v')}\n---\n`)
         this.spawnCommand('npm', ['install'])
       }
     })
-
-    // if (this.props.jsLang.name === 'typescript') // TODO install 'typings' globally if typescript option selected
   }
 })

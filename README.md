@@ -23,13 +23,11 @@ JavaScript:
 - Vanilla
 - Vue.js (incl/ single file components, vue-router & vue-i18n)
 - React
-- TypeScript _coming soon_
 
 CSS:
 - Stylus
 - Sass
 - SCSS
-- Sourdough _coming soon_
 
 ...based upon a foundation of the following:
 
