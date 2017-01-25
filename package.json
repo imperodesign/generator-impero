@@ -8,7 +8,7 @@
     "generators",
     "modules"
   ],
-  "main": "src/index.js",
+  "main": "generators/app/index.js",
   "scripts": {
     "test": "mocha test/index"
   },
