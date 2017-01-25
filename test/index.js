@@ -26,11 +26,11 @@ const testLegacyPolyfillsExistence = shouldBeThere => {
 
   if (shouldBeThere) {
     it('adds legacy browser polyfills to frontend js', () => {
-      for (const polyfill of polyfillsToCheck) assert.fileContent(file, polyfill)
+      polyfillsToCheck.map(polyfill => { assert.fileContent(file, polyfill) })
     })
   } else {
     it('does not add legacy browser polyfills to frontend js', () => {
-      for (const polyfill of polyfillsToCheck) assert.noFileContent(file, polyfill)
+      polyfillsToCheck.map(polyfill => { assert.noFileContent(file, polyfill) })
     })
   }
 }
@@ -42,11 +42,11 @@ describe('generator-impero', () => {
     before(done => {
       helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts(Object.assign(cfg.sharedPromptAnswers, {
-          'description': expectedDescription + '"""', // Intentional error: double quotes in JSON
-          'jsLang': 'vue',
-          'browserSupport': 'modern',
-          'copyEnv': true,
-          'installDeps': false
+          description: expectedDescription + '"""', // Intentional error: double quotes in JSON
+          jsLang: 'vue',
+          browserSupport: 'modern',
+          copyEnv: true,
+          installDeps: false
         }))
         .on('end', done)
     })
@@ -70,11 +70,11 @@ describe('generator-impero', () => {
     before(done => {
       helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts(Object.assign(cfg.sharedPromptAnswers, {
-          'cssLang': 'sass',
-          'jsLang': 'vanilla',
-          'browserSupport': 'legacy',
-          'copyEnv': false,
-          'installDeps': false
+          cssLang: 'sass',
+          jsLang: 'vanilla',
+          browserSupport: 'legacy',
+          copyEnv: false,
+          installDeps: false
         }))
         .on('end', done)
     })
@@ -86,5 +86,48 @@ describe('generator-impero', () => {
 
     testLegacyPolyfillsExistence(true)
     sharedTests()
+  })
+})
+
+describe('modules', () => {
+  describe('shortLoaderNotation', () => {
+    const shortLoaderNotation = require('../modules/shortLoaderNotation')
+
+    it('removes "-loader" suffix from string', () => {
+      assert.equal('babel', shortLoaderNotation('babel-loader'))
+    })
+  })
+
+  describe('sortObjectByKeys', () => {
+    const sortObjectByKeys = require('../modules/sortObjectByKeys')
+
+    it('sorts object alphabetically by keys', () => {
+      const sortedObj = { a: 1, b: 3, c: 2 }
+      const unsortedObj = { a: 1, c: 2, b: 3 }
+
+      assert.equal(Object.keys(sortedObj)[0], Object.keys(sortObjectByKeys(unsortedObj))[0])
+      assert.equal(Object.keys(sortedObj)[1], Object.keys(sortObjectByKeys(unsortedObj))[1])
+      assert.equal(Object.keys(sortedObj)[2], Object.keys(sortObjectByKeys(unsortedObj))[2])
+    })
+  })
+
+  describe('sortNpmDeps', () => {
+    const sortNpmDeps = require('../modules/sortNpmDeps')
+
+    it('sorts package.json dependencies alphabetically by keys', () => {
+      const sortedManifest = {
+        name: 'random',
+        dependencies: { 'else': '2.2.2', 'something': '0.0.1' },
+        devDependencies: { 'also': '0.0.1', 'this': '2.2.2' }
+      }
+      const unsortedManifest = {
+        name: 'random',
+        dependencies: { 'something': '0.0.1', 'else': '2.2.2' },
+        devDependencies: { 'also': '0.0.1', 'this': '2.2.2' }
+      }
+
+      assert.equal(Object.keys(sortedManifest.dependencies)[0], Object.keys(sortNpmDeps(unsortedManifest).dependencies)[0])
+      assert.equal(Object.keys(sortedManifest.devDependencies)[0], Object.keys(sortNpmDeps(unsortedManifest).devDependencies)[0])
+    })
   })
 })

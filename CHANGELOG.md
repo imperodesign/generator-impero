@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project will soon adhere to to [Semantic Versioning](http://semver.org/).
 
+## [WIP]
+### Changed
+- Remove "todo" messages.
+
 ## [1.0.0-alpha21] - 2016-12-19
 ### Added
 - Webpack tree shaking. It was previously broken by Babel.
