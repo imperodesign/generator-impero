@@ -1,6 +1,6 @@
 <img src="https://media.giphy.com/media/3o6gEaLDVsHUcmyTZe/giphy-tumblr.gif">
 
-Built to your liking with the Impero generator.
+Built to your liking with the [Impero generator](https://github.com/imperodesign/generator-impero).
 
 # <%= name %>
 
