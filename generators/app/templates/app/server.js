@@ -3,13 +3,15 @@
 // Dependencies
 require('dotenv').config({ silent: false })
 const express = require('express')
-const app = express()
+const helmet = require('helmet')
 
 // Configuration
+const app = express()
 app.set('port', process.env.WEB_SERVER_PORT || 5000)
 app.set('views', <% if (jsLang === 'vue') { %>__dirname<% } else { %>`${__dirname}/views`<% } %>)
 app.set('view engine', 'pug')
 app.use('/static', express.static(`${__dirname}/static`))
+app.use(helmet())
 
 // Webpack HMR for development
 if (process.env.APP_ENV === 'development') {
