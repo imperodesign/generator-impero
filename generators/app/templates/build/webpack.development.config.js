@@ -11,7 +11,7 @@ const rupture = require('rupture')<% } %>
 // Set var with fallbacks in case the env file failed to load or the env var is missing
 require('dotenv').config({ silent: true })
 
-const port = Number(process.env.NODE_PORT) || 5000
+const port = Number(process.env.WEB_SERVER_PORT) || 5000
 
 module.exports = merge(baseConfig, {
   entry: [

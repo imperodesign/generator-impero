@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [WIP]
 ### Changed
+- Rename environment variables per 12-factor app best practices.
 - Remove "todo" messages.
 
 ## [1.0.0-alpha21] - 2016-12-19

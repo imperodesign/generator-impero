@@ -22,7 +22,7 @@ html(lang='en')
       //-
 
     //- Load bundled CSS if not in dev
-    if process.env.NODE_ENV !== 'development'
+    if process.env.APP_ENV !== 'development'
       link(href='/static/dist/style.css', rel='stylesheet', type='text/css')
 
   body
@@ -30,7 +30,7 @@ html(lang='en')
       .js-app
 
     //- Load HMR JS & CSS if in dev, else just load bundled JS
-    if process.env.NODE_ENV === 'development'
+    if process.env.APP_ENV === 'development'
       script(src='/dev-assets/bundle.js')
     else
       script(src='/static/dist/bundle.js')

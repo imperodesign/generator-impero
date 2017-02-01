@@ -6,13 +6,13 @@ const express = require('express')
 const app = express()
 
 // Configuration
-app.set('port', process.env.NODE_PORT || 5000)
+app.set('port', process.env.WEB_SERVER_PORT || 5000)
 app.set('views', <% if (jsLang === 'vue') { %>__dirname<% } else { %>`${__dirname}/views`<% } %>)
 app.set('view engine', 'pug')
 app.use('/static', express.static(`${__dirname}/static`))
 
 // Webpack HMR for development
-if (process.env.NODE_ENV === 'development') {
+if (process.env.APP_ENV === 'development') {
   // Create & configure a webpack compiler
   const webpack = require('webpack')
   const webpackConfig = require('../build/webpack.development.config')

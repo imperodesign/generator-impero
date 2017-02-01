@@ -12,7 +12,7 @@ html(lang='en')
       include components/footer
 
     //- Load HMR JS & CSS if in dev, else just load bundled JS
-    if process.env.NODE_ENV === 'development'
+    if process.env.APP_ENV === 'development'
       script(src='/dev-assets/bundle.js')
     else
       script(src='/static/dist/bundle.js')
