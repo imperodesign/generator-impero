@@ -1,5 +1,14 @@
 module.exports = {
   langs: {
+    db: {
+      none: {
+        name: 'none'
+      },
+      mongo: {
+        name: 'mongo',
+        templateDir: 'mongo'
+      }
+    },
     cssLang: {
       stylus: {
         name: 'stylus',
@@ -51,6 +60,11 @@ module.exports = {
         'classlist.js': '^1.1.20150312',
         'es6-promise': '^4.0.5',
         'matchmedia-polyfill': '^0.3.0',
+      },
+      db: {
+        mongo: {
+          'mongoose': '^4.8.1'
+        }
       },
       js: {
         vanilla: {},

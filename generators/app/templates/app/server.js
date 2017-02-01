@@ -11,7 +11,12 @@ app.set('port', process.env.WEB_SERVER_PORT || 5000)
 app.set('views', <% if (jsLang === 'vue') { %>__dirname<% } else { %>`${__dirname}/views`<% } %>)
 app.set('view engine', 'pug')
 app.use('/static', express.static(`${__dirname}/static`))
-app.use(helmet())
+app.use(helmet())<% if (db === 'mongo') { %>
+
+// Database
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
+mongoose.connect(`mongodb://${process.env.DB_HOST}/${process.env.DB_NAME}`)<% } %>
 
 // Webpack HMR for development
 if (process.env.APP_ENV === 'development') {

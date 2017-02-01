@@ -68,6 +68,15 @@ module.exports = yeoman.Base.extend({
       ],
       default: 'legacy'
     }, {
+      type: 'list',
+      name: 'db',
+      message: 'Using a database?',
+      choices: [
+        { name: 'None', value: 'none' },
+        { name: 'MongoDB (Mongoose)', value: 'mongo' }
+      ],
+      default: 'none'
+    }, {
       type: 'confirm',
       name: 'copyEnv',
       message: 'Copy .env.example to .env?',
@@ -107,6 +116,24 @@ module.exports = yeoman.Base.extend({
       }
     )
     this.fs.copyTpl(
+      this.templatePath('.env.example'),
+      this.destinationPath('.env.example'), {
+        db: this.props.db.name
+      }
+    )
+    if (this.props.copyEnv) this.fs.copyTpl(
+      this.templatePath('.env.example'),
+      this.destinationPath('.env'), {
+        db: this.props.db.name
+      }
+    )
+    this.fs.copyTpl(
+      this.templatePath('.eslintrc'),
+      this.destinationPath('.eslintrc'), {
+        jsLang: this.props.jsLang.name
+      }
+    )
+    this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'), {
         name: this.props.projectName,
@@ -138,32 +165,19 @@ module.exports = yeoman.Base.extend({
     )
     this.fs.copyTpl(
       this.templatePath('app/server-routes.js'),
-      this.props.jsLang.name === 'vue' ? this.destinationPath('app/api.js') : this.destinationPath('app/routes.js'), {
+      this.destinationPath(`app/${this.props.jsLang.name === 'vue' ? 'api' : 'routes'}.js`), {
         jsLang: this.props.jsLang.name
       }
     )
     this.fs.copyTpl(
       this.templatePath('app/server.js'),
       this.destinationPath('app/server.js'), {
-        jsLang: this.props.jsLang.name
+        jsLang: this.props.jsLang.name,
+        db: this.props.db.name
       }
     )
 
     // Copy untemplated files
-    this.fs.copy(
-      this.templatePath('.env.example'),
-      this.destinationPath('.env.example')
-    )
-    if (this.props.copyEnv) this.fs.copy(
-      this.templatePath('.env.example'),
-      this.destinationPath('.env')
-    )
-    this.fs.copyTpl(
-      this.templatePath('.eslintrc'),
-      this.destinationPath('.eslintrc'), {
-        jsLang: this.props.jsLang.name
-      }
-    )
     // Prefixed with an underscore, else npm will rename it to .npmignore
     this.fs.copy(
       this.templatePath('_.gitignore'),
@@ -176,6 +190,10 @@ module.exports = yeoman.Base.extend({
     if (this.props.jsLang.name === 'vue') this.fs.copy(
       this.templatePath('app/base-vue.pug'),
       this.destinationPath('app/base.pug')
+    )
+    if (this.props.db.name !== 'none') this.fs.copy(
+      this.templatePath(`app/_models/${this.props.db.templateDir}`),
+      this.destinationPath('app/models')
     )
     this.fs.copy(
       this.templatePath('app/static/humans.txt'),
@@ -289,6 +307,7 @@ module.exports = yeoman.Base.extend({
 
     // Merge conditional dependencies per selection
     if (this.props.browserSupport === 'legacy') deps.dependencies = Object.assign(deps.dependencies, conditionalDeps.deps.legacy)
+    if (this.props.db.name !== 'none') deps.dependencies = Object.assign(deps.dependencies, conditionalDeps.deps.db[this.props.db.name])
     deps.dependencies = Object.assign(deps.dependencies, conditionalDeps.deps.js[this.props.jsLang.name])
     deps.devDependencies = Object.assign(deps.devDependencies, conditionalDeps.devDeps.css[this.props.cssLang.name], conditionalDeps.devDeps.js[this.props.jsLang.name])
 
